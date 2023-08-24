@@ -1,3 +1,6 @@
+'use client';
+
+import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 
 export default function Home() {
@@ -12,7 +15,8 @@ export default function Home() {
             alt="Logo MauritiusMedia"
           />
           <div>
-            <button>Login</button>
+            <button onClick={() => signIn()}>Login</button>
+            <button onClick={() => signOut()}>Sign Out</button>
           </div>
         </div>
         <div className="flex w-full h-full items-center my-10">

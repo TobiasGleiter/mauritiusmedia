@@ -11,7 +11,10 @@ export interface IHeader {
 }
 
 const navigation = [{ name: 'Home', href: '/', as: '/' }];
-const intern = [{ name: 'Dashboard', href: '/dashboard', as: '/dashboard' }];
+const intern = [
+  { name: 'Dashboard', href: '/dashboard', as: '/dashboard' },
+  { name: 'Equipment', href: '/equipment', as: '/equipment' },
+];
 
 const Header: React.FC<IHeader> = ({ session }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +40,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
           />
         </div>
         <div className="hidden lg:flex lg:gap-x-4">
-          <ul className="text-white">
+          <ul className="flex text-white">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
@@ -50,7 +53,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
               </li>
             ))}
           </ul>
-          <ul className="text-white">
+          <ul className="flex text-white lg:gap-x-4">
             {session &&
               intern.map((item) => (
                 <li key={item.href}>
@@ -120,34 +123,50 @@ const Header: React.FC<IHeader> = ({ session }) => {
               </div>
               <div className="mt-6 flow-root">
                 <div className="-my-6">
-                  <div className="space-y-2 py-6">
+                  <div className="space-y-0 pb-4 border-b">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
                         as={item.as}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold"
+                        className="block px-3 py-2 text-base font-semibold"
                       >
                         {item.name}
                       </Link>
                     ))}
                   </div>
-                  {session ? (
-                    <Link
-                      href="/auth/signout"
-                      className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
-                    >
-                      Sign out
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => signIn()}
-                      className="rounded-full px-4  shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
-                    >
-                      Sign in
-                    </button>
-                  )}
+                  <div className="space-y-0 pb-4 border-b">
+                    {session &&
+                      intern.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          as={item.as}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block px-3 py-2 text-base font-semibold"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                  </div>
+                  <div className="mt-4">
+                    {session ? (
+                      <Link
+                        href="/auth/signout"
+                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+                      >
+                        Sign out
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => signIn()}
+                        className="rounded-full px-4  shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+                      >
+                        Sign in
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </Dialog.Panel>

@@ -11,7 +11,7 @@ export default async function Home() {
         >
           <source src="/mauritiusmedia-intro.mp4" type="video/mp4" />
         </video>
-        <div className="z-50 mt-20">
+        <div className="z-20 mt-20">
           <h1 className="xs:text-4xl md:text-lg font-bold mb-2 text-white">
             MauritiusMedia
           </h1>

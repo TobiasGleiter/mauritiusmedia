@@ -1,7 +1,8 @@
 import { IBaseIcon } from './BaseIcon';
 
 const base: IBaseIcon = {
-  sampleTextProp: 'Hello world!',
+  icon: 'logo',
+  style: 'w-6 h-6',
 };
 
 export const mockBaseIconProps = {

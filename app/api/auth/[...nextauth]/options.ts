@@ -1,4 +1,5 @@
 import Connect from '@/lib/mongodb/connect';
+import database from '@/lib/mongodb/database';
 import clientPromise from '@/lib/mongodb/mongodb';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import { NextAuthOptions } from 'next-auth';
@@ -9,8 +10,9 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   // @ts-ignore
   adapter: MongoDBAdapter(clientPromise, {
-    databaseName: process.env.MONGO_DB_NAME,
+    databaseName: database,
   }),
+  database: process.env.MONGO_DB_URI,
   providers:
     process.env.NODE_ENV === 'development'
       ? [
@@ -26,14 +28,12 @@ export const authOptions: NextAuthOptions = {
           }),
           // ...add more providers here
         ],
-  /*
   pages: {
     signIn: '/auth/signin',
     signOut: '/auth/signout',
     error: '/auth/error', // Error code passed in query string as ?error=
     newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-  */
   session: { strategy: 'jwt' },
   events: {
     // this function is called when it is the first time the user signs in

@@ -1,7 +1,8 @@
 'use client';
 
-import { signIn, signOut } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export interface IHeader {
   session: any;
@@ -18,9 +19,9 @@ const Header: React.FC<IHeader> = ({ session }) => {
       />
       <div>
         {session ? (
-          <button onClick={() => signOut()}>Sign Out</button>
+          <Link href="/auth/signout">Sign Out</Link>
         ) : (
-          <button onClick={() => signIn()}>Login</button>
+          <button onClick={() => signIn()}>Sign In</button>
         )}
       </div>
     </div>

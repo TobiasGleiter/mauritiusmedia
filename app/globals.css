@@ -17,3 +17,14 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Globale Stile für die Scrollleiste */
+::-webkit-scrollbar {
+  display: none; /* Verstecke die Scrollleiste für Chrome, Safari und Opera */
+}
+
+/* Optionale Stile für Firefox */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

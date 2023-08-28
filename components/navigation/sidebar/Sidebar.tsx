@@ -37,7 +37,7 @@ const Sidebar: React.FC<ISidebar> = () => {
                 }`}
               >
                 <BaseIcon icon={item.icon} style={`w-6 h-6`} />
-                <span className=" ml-2 text-lg font-light lg:block hidden ">
+                <span className=" ml-2 text-md font-light lg:block hidden ">
                   {item.label}
                 </span>
               </Link>
@@ -51,7 +51,7 @@ const Sidebar: React.FC<ISidebar> = () => {
               className="flex items-center p-1  rounded-lg duration-200 hover:text-primary-600"
             >
               <BaseIcon icon="profile" style={`w-6 h-6`} />
-              <span className=" ml-2 text-lg font-light lg:block hidden ">
+              <span className=" ml-2 text-md font-light lg:block hidden ">
                 Profile
               </span>
             </Link>
@@ -63,7 +63,7 @@ const Sidebar: React.FC<ISidebar> = () => {
               className="flex items-center p-1  rounded-lg duration-200 hover:text-primary-600"
             >
               <BaseIcon icon="signout" style={`w-6 h-6`} />
-              <span className=" ml-2 text-lg font-light lg:block hidden ">
+              <span className=" ml-2 text-md font-light lg:block hidden ">
                 Sign out
               </span>
             </Link>

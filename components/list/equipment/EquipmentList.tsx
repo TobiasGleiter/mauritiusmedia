@@ -7,8 +7,6 @@ export interface IEquipmentList {
 const EquipmentList = async ({ promise }: IEquipmentList) => {
   const equipment = await promise;
 
-  console.log(equipment[0]._id);
-
   return (
     <ul className="space-y-2">
       {equipment.map((item: any) => {

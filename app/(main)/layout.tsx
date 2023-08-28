@@ -10,9 +10,11 @@ export default function ProtectedLayout({
     <div className="flex min-h-screen flex-col ">
       <div className="flex flex-row">
         <Sidebar />
-        <div className="flex flex-col min-w-full">
+        <div className="relative flex-col min-w-screen w-full">
           <Header />
-          <div className="mx-6">{children}</div>
+          <div className="mx-auto flex max-w-7xl align-middle items-center justify-between px-4">
+            {children}
+          </div>
         </div>
       </div>
     </div>

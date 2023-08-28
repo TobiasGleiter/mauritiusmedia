@@ -16,11 +16,8 @@ const Sidebar: React.FC<ISidebar> = () => {
 
   return (
     <nav className="flex-none items-center z-50 min-h-screen xl:w-64 lg:w-64 w-fit text-white bg-black">
-      <div className="flex flex-col h-full px-3 overflow-y-auto border-r border-white/10">
-        <Link
-          href="/"
-          className="flex ml-1 mb-6 mt-5 items-center duration-200"
-        >
+      <div className="flex flex-col h-full divide-y divide-inherit gap-y-6 px-3 overflow-y-auto border-r border-white/10">
+        <Link href="/" className="flex ml-1 mt-5 items-center duration-200">
           <BaseIcon icon="logo" style="w-6 h-6 text-primary-600" />
           <Image
             src="/mauritiusmedia.png"
@@ -30,7 +27,7 @@ const Sidebar: React.FC<ISidebar> = () => {
             className="ml-2 lg:block hidden"
           />
         </Link>
-        <ul className=" space-y-2">
+        <ul className=" space-y-2 pt-6">
           {nav.map((item: any) => (
             <li key={item.label}>
               <Link
@@ -46,6 +43,31 @@ const Sidebar: React.FC<ISidebar> = () => {
               </Link>
             </li>
           ))}
+        </ul>
+        <ul className="flex flex-col pt-6 space-y-2">
+          <li>
+            <Link
+              href="/"
+              className="flex items-center p-1  rounded-lg duration-200 hover:text-primary-600"
+            >
+              <BaseIcon icon="profile" style={`w-6 h-6`} />
+              <span className=" ml-2 text-lg font-light lg:block hidden ">
+                Profile
+              </span>
+            </Link>
+          </li>
+          <li>
+            {' '}
+            <Link
+              href="/auth/signout"
+              className="flex items-center p-1  rounded-lg duration-200 hover:text-primary-600"
+            >
+              <BaseIcon icon="signout" style={`w-6 h-6`} />
+              <span className=" ml-2 text-lg font-light lg:block hidden ">
+                Sign out
+              </span>
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

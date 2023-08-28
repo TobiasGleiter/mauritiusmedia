@@ -1,3 +1,3 @@
 export default function AdminDashboardPage() {
-  return <div>Admin Dashboard!</div>;
+  return <div className="mt-20">Admin Dashboard!</div>;
 }

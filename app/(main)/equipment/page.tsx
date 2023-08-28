@@ -1,3 +1,3 @@
 export default function EquipmentPage() {
-  return <div>Equipment</div>;
+  return <div className="mt-20">Equipment</div>;
 }

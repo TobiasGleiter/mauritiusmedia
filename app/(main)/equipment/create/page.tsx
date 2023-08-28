@@ -1,5 +1,6 @@
 'use client';
 
+import baseURL from '@/utils/getBaseURL';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -21,7 +22,7 @@ export default function CreateEquipmentPage() {
 
     const body = JSON.stringify({ name, category, location });
     try {
-      const res = await fetch('/api/equipment', {
+      const res = await fetch(`${baseURL}/api/equipment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export default function CreateEquipmentPage() {
 
       if (res.ok) {
         await fetch(
-          `/api/revalidate?tag=equipment&secret=${process.env.SECRET_REVALIDATION_TOKEN}`,
+          `${baseURL}/api/revalidate?tag=equipment&secret=${process.env.SECRET_REVALIDATION_TOKEN}`,
           { method: 'POST' }
         );
 

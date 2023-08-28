@@ -6,6 +6,13 @@ import { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
+let baseURL: string;
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3000';
+} else {
+  baseURL = 'https://mauritiusmedia.vercel.app';
+}
+
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   // @ts-ignore
@@ -45,6 +52,13 @@ export const authOptions: NextAuthOptions = {
       await collection.updateOne(
         { email: user.email },
         { $set: { role: 'guest' } }
+      );
+    },
+    signIn: async () => {
+      // on signin revalidate
+      await fetch(
+        `${baseURL}/api/revalidate?tag=equipment&secret=${process.env.SECRET_REVALIDATION_TOKEN}`,
+        { method: 'POST' }
       );
     },
   },

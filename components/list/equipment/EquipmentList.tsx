@@ -23,7 +23,6 @@ const EquipmentList = async ({ promise }: IEquipmentList) => {
             <div className="space-x-2 ">
               <Link href={`/equipment/edit/${item._id}`}>Edit</Link>
               <Link href={`/equipment/details/${item._id}`}>Details</Link>
-              {/**<DeleteButton label="Delete" id={item._id} data-superjson /> */}
             </div>
           </li>
         );

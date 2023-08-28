@@ -35,8 +35,8 @@ export default function CreateEquipmentPage() {
           { method: 'POST' }
         );
 
-        router.push('/equipment');
         router.refresh();
+        router.push('/equipment');
       }
     } catch (error: any) {
       throw new Error('Failed to create new Equipment');

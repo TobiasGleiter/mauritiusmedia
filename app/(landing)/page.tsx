@@ -5,7 +5,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-black/60 z-10" />
         <video
           className="absolute top-0 left-0 w-full h-screen object-cover z-0"
-          autoPlay
+          //autoPlay
           muted
           loop
         >

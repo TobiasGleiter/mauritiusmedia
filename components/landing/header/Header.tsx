@@ -39,28 +39,26 @@ const Header: React.FC<IHeader> = ({ session }) => {
             alt="Logo MauritiusMedia"
           />
         </div>
-        <div className="hidden lg:flex lg:gap-x-4">
-          <ul className="flex text-white">
+        <div className="hidden lg:flex lg:gap-x-4 ">
+          <ul className="lg:flex lg:gap-x-4 text-white py-2">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   as={item.as}
-                  className="relative hover:text-green-600 duration-300"
+                  className=" hover:text-green-600 duration-300"
                 >
                   {item.name}
                 </Link>
               </li>
             ))}
-          </ul>
-          <ul className="flex text-white lg:gap-x-4">
             {session &&
               intern.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     as={item.as}
-                    className="relative hover:text-green-600 duration-300"
+                    className=" hover:text-green-600 duration-300"
                   >
                     {item.name}
                   </Link>
@@ -70,14 +68,14 @@ const Header: React.FC<IHeader> = ({ session }) => {
           {session ? (
             <Link
               href="/auth/signout"
-              className="rounded-full px-4  shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
             >
               Sign out
             </Link>
           ) : (
             <button
               onClick={() => signIn()}
-              className="rounded-full px-4  shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
             >
               Sign in
             </button>
@@ -135,8 +133,6 @@ const Header: React.FC<IHeader> = ({ session }) => {
                         {item.name}
                       </Link>
                     ))}
-                  </div>
-                  <div className="space-y-0 pb-4 border-b">
                     {session &&
                       intern.map((item) => (
                         <Link
@@ -161,7 +157,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
                     ) : (
                       <button
                         onClick={() => signIn()}
-                        className="rounded-full px-4  shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
                       >
                         Sign in
                       </button>

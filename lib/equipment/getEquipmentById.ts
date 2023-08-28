@@ -1,16 +1,11 @@
+import { ObjectId } from 'mongodb';
+import Connect from '../mongodb/connect';
+
 export default async function getEquipmentById(id: string) {
-  const res = await fetch(`http://localhost:3000/api/equipment/${id}`, {
-    next: { tags: ['equipment'] },
+  const collection = await Connect('equipment');
+  const response = await collection.findOne({
+    _id: new ObjectId(id),
   });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
-
-  const data = res.json();
-
-  return data;
+  return response;
 }

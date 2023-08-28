@@ -1,3 +1,4 @@
+import { BiChurch, BiSolidDashboard, BiSolidFileDoc } from 'react-icons/bi';
 import { ImArrowDown2, ImArrowUpRight2, ImSpinner9 } from 'react-icons/im';
 import { SiGithub, SiGoogle, SiNextdotjs } from 'react-icons/si';
 
@@ -8,6 +9,10 @@ const ICONS_MAP: any = {
   spinner: <ImSpinner9 />,
   arrowdown: <ImArrowDown2 />,
   arrowrightup: <ImArrowUpRight2 />,
+
+  logo: <BiChurch />,
+  dashboard: <BiSolidDashboard />,
+  equipment: <BiSolidFileDoc />,
 };
 
 export interface IBaseIcon {

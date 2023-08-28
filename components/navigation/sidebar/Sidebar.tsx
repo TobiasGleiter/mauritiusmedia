@@ -1,4 +1,5 @@
 'use client';
+import BaseIcon from '@/components/icons/base/BaseIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -7,25 +8,26 @@ export interface ISidebar {}
 
 const nav = [
   { label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
-  { label: 'Equipment', href: '/equipment', icon: 'dashboard' },
+  { label: 'Equipment', href: '/equipment', icon: 'equipment' },
 ];
 
 const Sidebar: React.FC<ISidebar> = () => {
   let pathname = usePathname();
 
   return (
-    <nav className="items-center z-50 min-h-screen xl:w-64 lg:w-64 sm:w-fit xs:w-fit body-font font-montserrat bg-white dark:bg-zinc-900 dark:text-white">
-      <div className="h-full px-3 py-5 overflow-y-auto  dark:bg-black border-r border-black/20 dark:border-white/10">
+    <nav className="flex-none items-center z-50 min-h-screen xl:w-64 lg:w-64 sm:w-fit xs:w-fit text-white bg-black">
+      <div className="flex flex-col h-full px-3 overflow-y-auto border-r border-white/10">
         <Link
           href="/"
-          className="flex mb-2 items-center p-1 text-base font-normal rounded-lg duration-200 dark:text-white "
+          className="flex ml-1 mb-6 mt-5 items-center duration-200"
         >
+          <BaseIcon icon="logo" style="w-6 h-6 text-primary-600" />
           <Image
             src="/mauritiusmedia.png"
             width={150}
             height={150}
             alt="Logo MauritiusMedia"
-            className="absolute"
+            className="ml-2 lg:block hidden"
           />
         </Link>
         <ul className="space-y-2">
@@ -33,10 +35,11 @@ const Sidebar: React.FC<ISidebar> = () => {
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`flex items-center p-1 text-base font-normal rounded-lg duration-200 dark:text-white xs:hover: md:hover:text-white md:hover:bg-black md:dark:hover:bg-white md:dark:hover:text-black ${
-                  pathname === item.href ? 'bg-white/10' : ''
+                className={`flex items-center p-1  rounded-lg duration-200 hover:text-primary-600 ${
+                  pathname === item.href ? 'text-primary-600' : ''
                 }`}
               >
+                <BaseIcon icon={item.icon} style={`w-6 h-6`} />
                 <span className=" ml-2 text-lg font-light lg:block sm:hidden xs:hidden ">
                   {item.label}
                 </span>

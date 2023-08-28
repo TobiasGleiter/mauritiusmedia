@@ -46,7 +46,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
                 <Link
                   href={item.href}
                   as={item.as}
-                  className=" hover:text-green-600 duration-300"
+                  className=" hover:text-primary-600 duration-300"
                 >
                   {item.name}
                 </Link>
@@ -58,7 +58,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
                   <Link
                     href={item.href}
                     as={item.as}
-                    className=" hover:text-green-600 duration-300"
+                    className=" hover:text-primary-600 duration-300"
                   >
                     {item.name}
                   </Link>
@@ -68,14 +68,14 @@ const Header: React.FC<IHeader> = ({ session }) => {
           {session ? (
             <Link
               href="/auth/signout"
-              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
             >
               Sign out
             </Link>
           ) : (
             <button
               onClick={() => signIn()}
-              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+              className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
             >
               Sign in
             </button>
@@ -150,14 +150,14 @@ const Header: React.FC<IHeader> = ({ session }) => {
                     {session ? (
                       <Link
                         href="/auth/signout"
-                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
                       >
                         Sign out
                       </Link>
                     ) : (
                       <button
                         onClick={() => signIn()}
-                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-green-600 lg:hover:text-white duration-300"
+                        className="rounded-full px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
                       >
                         Sign in
                       </button>

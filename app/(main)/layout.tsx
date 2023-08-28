@@ -7,8 +7,8 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between">
-      <div className="z-10 max-w-5xl w-full flex flex-row">
+    <div className="flex min-h-screen flex-col ">
+      <div className="flex flex-row">
         <Sidebar />
         <div className="flex flex-col min-w-full">
           <Header />

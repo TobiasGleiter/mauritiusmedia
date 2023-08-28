@@ -7,6 +7,8 @@ export interface IEquipmentList {
 const EquipmentList = async ({ promise }: IEquipmentList) => {
   const equipment = await promise;
 
+  console.log(equipment[0]._id);
+
   return (
     <ul className="space-y-2">
       {equipment.map((item: any) => {
@@ -23,8 +25,7 @@ const EquipmentList = async ({ promise }: IEquipmentList) => {
             <div className="space-x-2 ">
               <Link href={`/equipment/edit/${item._id}`}>Edit</Link>
               <Link href={`/equipment/details/${item._id}`}>Details</Link>
-
-              {/** <DeleteButton label="Delete" id={item._id} /> */}
+              {/**<DeleteButton label="Delete" id={item._id} data-superjson /> */}
             </div>
           </li>
         );

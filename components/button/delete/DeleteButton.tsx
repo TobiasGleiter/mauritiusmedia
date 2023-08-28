@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 export interface IDeleteButton {
   /**
    * Is this the principal call to action on the page?
@@ -31,8 +29,6 @@ const DeleteButton: React.FC<IDeleteButton> = ({
   label,
   id,
 }) => {
-  const router = useRouter();
-
   const handleDelete = async () => {
     console.log(id);
     await fetch(`/api/equipment/${id}`, {

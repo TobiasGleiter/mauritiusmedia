@@ -35,19 +35,13 @@ export default function CreateEquipmentPage() {
           { method: 'POST' }
         );
 
-        router.refresh();
         router.push('/equipment');
+        router.refresh();
       }
     } catch (error: any) {
       throw new Error('Failed to create new Equipment');
     }
   };
-
-  let baseURL: string;
-  // CHECK IF DEVELOPMENT OR PROUDCTION TO SELECT RIGHT database
-  process.env.NODE_ENV === 'development'
-    ? (baseURL = process.env.NEXT_DEV_SITE_URL as string)
-    : (baseURL = process.env.NEXT_PUBLIC_SITE_URL as string);
 
   return (
     <div className="mt-20">

@@ -15,7 +15,7 @@ const Sidebar: React.FC<ISidebar> = () => {
   let pathname = usePathname();
 
   return (
-    <nav className="flex-none items-center z-50 min-h-screen xl:w-64 lg:w-64 sm:w-fit xs:w-fit text-white bg-black">
+    <nav className="flex-none items-center z-50 min-h-screen xl:w-64 lg:w-64 w-fit text-white bg-black">
       <div className="flex flex-col h-full px-3 overflow-y-auto border-r border-white/10">
         <Link
           href="/"
@@ -30,7 +30,7 @@ const Sidebar: React.FC<ISidebar> = () => {
             className="ml-2 lg:block hidden"
           />
         </Link>
-        <ul className="space-y-2">
+        <ul className=" space-y-2">
           {nav.map((item: any) => (
             <li key={item.label}>
               <Link
@@ -40,7 +40,7 @@ const Sidebar: React.FC<ISidebar> = () => {
                 }`}
               >
                 <BaseIcon icon={item.icon} style={`w-6 h-6`} />
-                <span className=" ml-2 text-lg font-light lg:block sm:hidden xs:hidden ">
+                <span className=" ml-2 text-lg font-light lg:block hidden ">
                   {item.label}
                 </span>
               </Link>

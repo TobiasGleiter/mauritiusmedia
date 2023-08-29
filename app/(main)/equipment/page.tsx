@@ -48,7 +48,12 @@ export default function EquipmentPage() {
         </div>
       </div>
       <div>
-        <p className="font-bold mb-2">Equipment</p>
+        <div className="flex font-bold mb-2 items-center">
+          Equipment
+          {!isValidating && (
+            <BaseIcon icon="spinner" style="ml-2 animate-spin" />
+          )}
+        </div>
         <ul className="space-y-2">
           {data.map((item: any) => {
             return (
@@ -80,11 +85,6 @@ export default function EquipmentPage() {
                     </button>
                   </div>
                 </div>
-                {isValidating && (
-                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2">
-                    <BaseIcon icon="spinner" style="animate-spin" />
-                  </div>
-                )}
               </li>
             );
           })}

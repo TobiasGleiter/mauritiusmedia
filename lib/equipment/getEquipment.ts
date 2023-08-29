@@ -1,12 +1,5 @@
 export default async function getEquipment() {
-  let baseURL: string;
-  if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:3000';
-  } else {
-    baseURL = 'https://mauritiusmedia.vercel.app';
-  }
-
-  const res = await fetch(`${baseURL as string}/api/equipment`, {
+  const res = await fetch(`/api/equipment`, {
     next: { tags: ['equipment'] },
   });
   // The return value is *not* serialized
@@ -17,5 +10,7 @@ export default async function getEquipment() {
     throw new Error('Failed to fetch data');
   }
 
-  return res.json();
+  const fallback = res.json();
+
+  return fallback;
 }

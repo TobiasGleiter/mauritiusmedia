@@ -17,17 +17,6 @@ export async function GET(request: Request, { params }: IEquipment) {
   return NextResponse.json(response, { status: 200 });
 }
 
-export async function DELETE(request: Request, { params }: IEquipment) {
-  const { id } = params;
-
-  console.log(id);
-
-  const collection = await Connect('equipment');
-  const response = await collection.deleteOne({ _id: new ObjectId(id) });
-
-  return NextResponse.json({ response }, { status: 200 });
-}
-
 export async function PUT(request: Request, { params }: IEquipment) {
   const { id } = params;
 
@@ -43,6 +32,25 @@ export async function PUT(request: Request, { params }: IEquipment) {
       },
     }
   );
+
+  return NextResponse.json({ response }, { status: 200 });
+}
+
+export async function DELETE(request: Request, { params }: IEquipment) {
+  const { id } = params;
+
+  const collection = await Connect('equipment');
+  const response = await collection.deleteOne({ _id: new ObjectId(id) });
+
+  return NextResponse.json({ response }, { status: 200 });
+}
+
+// DELETING WITH PATCH (DELETE WORKS WITH POSTMAN BUT NOT IN NEXTJS)
+export async function PATCH(request: Request, { params }: IEquipment) {
+  const { id } = params;
+
+  const collection = await Connect('equipment');
+  const response = await collection.deleteOne({ _id: new ObjectId(id) });
 
   return NextResponse.json({ response }, { status: 200 });
 }

@@ -1,5 +1,5 @@
-export default async function getEquipmentById(id: string) {
-  const res = await fetch(`/api/equipment/${id}`, {
+export default async function getEquipment() {
+  const res = await fetch(`/api/equipment`, {
     next: { tags: ['equipment'] },
   });
   // The return value is *not* serialized
@@ -10,7 +10,5 @@ export default async function getEquipmentById(id: string) {
     throw new Error('Failed to fetch data');
   }
 
-  const data = res.json();
-
-  return data;
+  return res.json();
 }

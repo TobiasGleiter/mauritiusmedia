@@ -68,7 +68,12 @@ export default function CreateEquipmentPage() {
           type="text"
           placeholder="Location"
         />
-        <button type="submit">Add Item</button>
+        <button
+          type="submit"
+          className="p-2 lg:px-2 bg-primary-600 text-black lg:hover:bg-white duration-200"
+        >
+          Add Item
+        </button>
       </form>
     </div>
   );

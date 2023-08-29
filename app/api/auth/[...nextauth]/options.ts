@@ -54,13 +54,6 @@ export const authOptions: NextAuthOptions = {
         { $set: { role: 'guest' } }
       );
     },
-    signIn: async () => {
-      // on signin revalidate
-      await fetch(
-        `${baseURL}/api/revalidate?tag=equipment&secret=${process.env.SECRET_REVALIDATION_TOKEN}`,
-        { method: 'POST' }
-      );
-    },
   },
   callbacks: {
     async jwt({ token, user }) {

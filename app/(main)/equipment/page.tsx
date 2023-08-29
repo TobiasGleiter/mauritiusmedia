@@ -50,7 +50,7 @@ export default function EquipmentPage() {
       <div>
         <div className="flex font-bold mb-2 items-center">
           Equipment
-          {!isValidating && (
+          {isValidating && (
             <BaseIcon icon="spinner" style="ml-2 animate-spin" />
           )}
         </div>

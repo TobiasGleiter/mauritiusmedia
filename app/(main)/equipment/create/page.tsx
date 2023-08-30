@@ -45,32 +45,38 @@ export default function CreateEquipmentPage() {
   };
 
   return (
-    <div className="mt-20">
-      <form onSubmit={handleSubmit} className="flex flex-col">
+    <div className="w-full">
+      <div className="flex font-bold mb-2 items-center">
+        Create new Equipment
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-2 w-full lg:w-96"
+      >
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className="border"
+          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
           type="text"
           placeholder="Name"
         />
         <input
           onChange={(e) => setCategory(e.target.value)}
           value={category}
-          className="border"
+          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
           type="text"
           placeholder="Category"
         />
         <input
           onChange={(e) => setLocation(e.target.value)}
           value={location}
-          className="border"
+          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
           type="text"
           placeholder="Location"
         />
         <button
           type="submit"
-          className="p-2 lg:px-2 bg-primary-600 text-black lg:hover:bg-white duration-200"
+          className="bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md lg:w-32 text-center"
         >
           Add Item
         </button>

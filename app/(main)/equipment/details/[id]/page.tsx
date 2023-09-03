@@ -7,7 +7,7 @@ import useSWR from 'swr';
 export default function EquipmentPage({ params }: any) {
   const { id } = params;
 
-  const { data, error, isLoading, isValidating } = useSWR(
+  const { data, isLoading, isValidating } = useSWR(
     `/api/equipment/${id}`,
     fetcher
   );

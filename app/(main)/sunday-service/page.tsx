@@ -4,9 +4,11 @@ import BaseIcon from '@/components/icons/base/BaseIcon';
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
 import Link from 'next/link';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function SundayServicePage() {
+  const [searchTerm, setSearchTerm] = useState('');
   const { data, isLoading, isValidating } = useSWR(
     '/api/sundayservice',
     fetcher
@@ -17,6 +19,27 @@ export default function SundayServicePage() {
   }
   return (
     <div className="w-full mt-4">
+      <div className="flex flex-col lg:flex-row align-middle gap-2 ">
+        <Link
+          href="/sunay-service/create"
+          className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md flex lg:w-48 text-center"
+        >
+          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
+          <p className="ml-1 align-middle">Create new</p>
+        </Link>
+        <div className="flex flex-row w-full items-center border-b border-white/20 py-1">
+          <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
+          <input
+            id="search"
+            name="search"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search..."
+            className="ml-1 focus:outline-none bg-transparent resize-none"
+          />
+        </div>
+      </div>
       <div className="mt-6">
         <div className="flex text-lg font-bold mb-2 items-center">
           Sunday Service

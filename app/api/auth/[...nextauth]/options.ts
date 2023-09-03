@@ -6,13 +6,6 @@ import { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
-let baseURL: string;
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3000';
-} else {
-  baseURL = 'https://mauritiusmedia.vercel.app';
-}
-
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   // @ts-ignore
@@ -76,6 +69,18 @@ export const authOptions: NextAuthOptions = {
       session.user.id = token.id as string;
       session.user.role = token.role as string;
       return session;
+    },
+    async signIn({ user }) {
+      // ##development remove when open Goalkeepr to the world!
+      if (process.env.NODE_ENV === 'development') {
+        return true; // Allow sign-in
+      } else {
+        if (user.email === process.env.ALLOWED_USER_EMAIL) {
+          return true; // Allow sign-in
+        } else {
+          return false; // Deny sign-in
+        }
+      }
     },
   },
 };

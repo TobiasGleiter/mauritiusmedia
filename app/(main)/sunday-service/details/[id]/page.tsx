@@ -8,7 +8,7 @@ import useSWR from 'swr';
 export default function SundayServicePage({ params }: any) {
   const { id } = params;
 
-  const { data, error, isLoading, isValidating } = useSWR(
+  const { data, isLoading, isValidating } = useSWR(
     `/api/sundayservice/${id}`,
     fetcher
   );

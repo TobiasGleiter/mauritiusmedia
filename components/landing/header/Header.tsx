@@ -14,6 +14,7 @@ const navigation = [{ name: 'Home', href: '/', as: '/' }];
 const intern = [
   { name: 'Dashboard', href: '/dashboard', as: '/dashboard' },
   { name: 'Equipment', href: '/equipment', as: '/equipment' },
+  { name: 'Sunday Service', href: '/sunday-service', as: '/sunday-service' },
 ];
 
 const Header: React.FC<IHeader> = ({ session }) => {

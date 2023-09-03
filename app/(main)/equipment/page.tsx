@@ -70,19 +70,12 @@ export default function EquipmentPage() {
 
   return (
     <div className="w-full mt-4">
-      <Link
-        href="/equipment/create"
-        className="flex justify-center lg:hidden fixed bottom-5 right-5 bg-primary-600 w-64 text-center p-2 rounded-md text-black"
-      >
-        <BaseIcon icon="newequipment" style="ml-1 w-6 h-6" />
-        <p className="ml-1 align-middle">Create new</p>
-      </Link>
       <div className="flex flex-col lg:flex-row align-middle gap-2 ">
         <Link
           href="/equipment/create"
-          className="hidden bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md lg:flex lg:w-48 text-center"
+          className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md flex lg:w-48 text-center"
         >
-          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6" />
+          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
           <p className="ml-1 align-middle">Create new</p>
         </Link>
         <div className="flex flex-row w-full items-center border-b border-white/20 py-1">

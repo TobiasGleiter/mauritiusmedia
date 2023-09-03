@@ -23,3 +23,19 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+.red {
+  background-color: #d40b1b;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: #55c90a;
+}
+
+.purple {
+  background-color: #3c13bd;
+}

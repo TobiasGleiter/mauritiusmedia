@@ -13,7 +13,7 @@ export default function ProtectedLayout({
         <Sidebar />
         <div className="relative flex-col min-w-screen w-full">
           <Header />
-          <div className="mx-auto flex max-w-7xl align-middle items-center justify-between px-4 mt-20 ">
+          <div className="mx-auto flex max-w-7xl align-middle items-center justify-between px-4 mt-16 ">
             <Providers>{children}</Providers>
           </div>
         </div>

@@ -1,12 +1,14 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { updateEquipment } from '@/helpers/equipment/api';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useState } from 'react';
 
 export default function EquipmentPage({ params }: any) {
   const { id } = params;
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [name, setName] = useState(searchParams.get('name') as string);
   const [category, setCategory] = useState(
@@ -26,39 +28,17 @@ export default function EquipmentPage({ params }: any) {
     }
 
     const body = JSON.stringify({ name, category, location });
-    try {
-      const res = await fetch(`/api/equipment/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      });
-
-      if (res.ok) {
-        // push to equipment
-      }
-    } catch (error: any) {
-      throw new Error(error);
+    const res = await updateEquipment(id, body);
+    if (res) {
+      router.push('/equipment');
     }
   };
 
-  /*
-  const { data, error, isLoading } = useSWR(`/api/equipment/${id}`, fetcher);
-
-  if (isLoading) {
-    return (
-      <div className="w-full">
-        <div className="flex font-bold mb-2 items-center">Update Equipment</div>
-        <div className="">Loading...</div>
-      </div>
-    );
-  }
-  */
-
   return (
-    <div className="w-full">
-      <div className="flex font-bold mb-2 items-center">Update Equipment</div>
+    <div className="w-full mt-4">
+      <div className="flex text-lg antialiased font-bold items-center text-white/70 border-b border-white/20 mb-4">
+        Update Equipment
+      </div>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 w-full lg:w-96"

@@ -28,6 +28,7 @@ export const config = {
     '/admin-dashboard/:path*',
     '/equipment/:path*',
     '/api/equipment/:path*', // comment out for postman
+    '/sunday-service/',
     '/auth/new-user',
   ],
 };

@@ -1,11 +1,12 @@
 import {
+  BiCalendar,
   BiChurch,
   BiListPlus,
   BiListUl,
   BiLogIn,
   BiLogOut,
   BiSearch,
-  BiSolidDashboard,
+  BiTachometer,
   BiUser,
 } from 'react-icons/bi';
 import { ImArrowDown2, ImArrowUpRight2, ImSpinner9 } from 'react-icons/im';
@@ -22,9 +23,10 @@ const ICONS_MAP: any = {
   search: <BiSearch />,
 
   logo: <BiChurch />,
-  dashboard: <BiSolidDashboard />,
+  dashboard: <BiTachometer />,
   equipment: <BiListUl />,
   newequipment: <BiListPlus />,
+  sundayservice: <BiCalendar />,
 
   profile: <BiUser />,
 

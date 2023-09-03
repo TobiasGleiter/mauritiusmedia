@@ -105,7 +105,7 @@ export default function EquipmentPage() {
             <BaseIcon icon="spinner" style="ml-2 animate-spin" />
           )}
         </div>
-        <ul className="space-y-2">
+        <ul className="space-y-2 mb-20">
           {filteredData.map((item: any) => {
             return (
               <li

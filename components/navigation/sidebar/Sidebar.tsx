@@ -47,7 +47,7 @@ const Sidebar: React.FC<ISidebar> = () => {
         <ul className="flex flex-col pt-6 space-y-2">
           <li>
             <Link
-              href="/"
+              href="/profile"
               className="flex items-center p-1  rounded-lg duration-200 hover:text-primary-600"
             >
               <BaseIcon icon="profile" style={`w-6 h-6`} />

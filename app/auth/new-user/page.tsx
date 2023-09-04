@@ -19,22 +19,19 @@ export default async function NewUserPage() {
         />
         <h1 className="w-full font-bold text-2xl mb-2 text-center ">
           Welcome{' '}
-          <span className="bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
-            {session?.user?.name}
-          </span>
-          !
+          <span className="text-primary-600">{session?.user?.name}</span>!
         </h1>
         <p className="mb-2 text-center">
           This tool is currently under construction.
         </p>
         <Link
           href="/dashboard"
-          className="group hover:text-green-600 duration-200 flex items-center justify-center"
+          className="group hover:text-primary-600 duration-200 flex items-center justify-center"
         >
           <p>Go to dashboard</p>
           <BaseIcon
             icon="arrowrightup"
-            style="ml-1 text-neutral-300 group-hover:text-green-400"
+            style="ml-1 text-neutral-300 group-hover:text-primary-600"
           />
         </Link>
       </div>

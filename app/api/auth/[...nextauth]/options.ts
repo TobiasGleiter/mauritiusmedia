@@ -1,4 +1,3 @@
-import Connect from '@/lib/mongodb/connect';
 import database from '@/lib/mongodb/database';
 import clientPromise from '@/lib/mongodb/mongodb';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
@@ -17,12 +16,34 @@ export const authOptions: NextAuthOptions = {
     process.env.NODE_ENV === 'development'
       ? [
           GithubProvider({
+            profile(profile) {
+              return {
+                role: 'guest',
+                id: profile.id.toString(),
+                name: profile.name,
+                image: profile.avatar_url,
+                email: profile.email,
+                location: profile.location,
+                emailVerified: profile.emailVerified,
+              };
+            },
             clientId: process.env.GITHUB_ID as string,
             clientSecret: process.env.GITHUB_SECRET as string,
           }),
         ]
       : [
           GoogleProvider({
+            profile(profile) {
+              return {
+                role: 'guest',
+                id: profile.id.toString(),
+                name: profile.name,
+                image: profile.avatar_url,
+                email: profile.email,
+                location: profile.location,
+                emailVerified: profile.emailVerified,
+              };
+            },
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
           }),
@@ -38,6 +59,7 @@ export const authOptions: NextAuthOptions = {
   events: {
     // this function is called when it is the first time the user signs in
     createUser: async ({ user }) => {
+      /*
       // update the database e.g. with paymet information from stripe...
       const collection = await Connect('users');
 
@@ -46,6 +68,7 @@ export const authOptions: NextAuthOptions = {
         { email: user.email },
         { $set: { role: 'guest' } }
       );
+      */
     },
   },
   callbacks: {
@@ -55,6 +78,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         // this is neccessary because first time for example the paymentId is not in the user object.
         // so we have to make a manually call to the database
+        /*
         const collection = await Connect('users');
         const updatedUser = await collection.findOne({ email: user.email });
 
@@ -62,12 +86,18 @@ export const authOptions: NextAuthOptions = {
           token.id = updatedUser._id;
           token.role = updatedUser.role;
         }
+        */
+        token.id = user.id;
+        token.role = user.role;
       }
+
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id as string;
-      session.user.role = token.role as string;
+      if (session?.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
+      }
       return session;
     },
     async signIn({ user }) {

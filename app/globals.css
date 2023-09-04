@@ -10,7 +10,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: black;
+  background: rgb(0, 0, 0);
 }
 
 /* Globale Stile für die Scrollleiste */

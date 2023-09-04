@@ -73,12 +73,12 @@ export default function EquipmentPage() {
       <div className="flex flex-col lg:flex-row align-middle gap-2 ">
         <Link
           href="/equipment/create"
-          className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md flex lg:w-48 text-center"
+          className=" bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex lg:w-48 text-center border border-zinc-600"
         >
           <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
           <p className="ml-1 align-middle">Create new</p>
         </Link>
-        <div className="flex flex-row w-full items-center border-b border-white/20 py-1">
+        <div className="flex flex-row w-full items-center border border-white/20 py-1 px-2">
           <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
           <input
             id="search"
@@ -95,21 +95,16 @@ export default function EquipmentPage() {
         <div className="flex text-lg font-bold mb-2 items-center">
           Equipment
           {isValidating && (
-            <BaseIcon icon="spinner" style="ml-2 animate-spin" />
+            <BaseIcon
+              icon="spinner"
+              style="ml-2 animate-spin text-primary-600"
+            />
           )}
         </div>
         <ul className="space-y-2 mb-20">
           {filteredData.map((item: any) => {
             return (
-              <li
-                key={item._id}
-                className="grid gap-2 md:grid-cols-6 sm:grid-cols-4 xs:grid-cols-1 
-                            p-4 mb-2
-                            border dark:border-white/20 rounded-xl 
-                            bg-gradient-to-br dark:from-black dark:to-zinc-900 from-white to-zinc-100
-                          text-black dark:text-white
-                            overflow-hidden"
-              >
+              <li key={item._id}>
                 <EquipmentCard
                   _id={item._id}
                   name={item.name}

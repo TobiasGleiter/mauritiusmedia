@@ -45,10 +45,10 @@ export default function SundayServicePage({ params }: any) {
       </div>
       <div>
         <div className="flex text-lg antialiased font-bold items-center text-white/70 border-b border-white/20 mb-4">
-          Procedure
+          Ablauf
         </div>
         <div className="space-y-2">
-          {data.procedure.map((item: any) => {
+          {data.workflow.map((item: any) => {
             return (
               <div key={item.name} className="flex justify-between">
                 <div>{item.name}</div>

@@ -1,5 +1,5 @@
 import {
-  BiCalendar,
+  BiBible,
   BiChurch,
   BiListPlus,
   BiListUl,
@@ -26,7 +26,7 @@ const ICONS_MAP: any = {
   dashboard: <BiTachometer />,
   equipment: <BiListUl />,
   newequipment: <BiListPlus />,
-  sundayservice: <BiCalendar />,
+  sundayservice: <BiBible />,
 
   profile: <BiUser />,
 

@@ -37,6 +37,7 @@ export default function CreateSundayService() {
   ) => {
     const { name, value } = e.target;
     const updatedWorkflow = [...item.workflow];
+    // @ts-ignore
     updatedWorkflow[index][name] = value;
     setItem({
       ...item,
@@ -73,7 +74,7 @@ export default function CreateSundayService() {
         <div className="flex flex-col w-full"></div>
         <div className="flex flex-col w-full">
           <h3>Workflow:</h3>
-          {item.workflow.map((step, index) => (
+          {item.workflow.map((step, index: number) => (
             <div key={index}>
               <input
                 type="text"

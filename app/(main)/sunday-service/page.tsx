@@ -15,19 +15,19 @@ export default function SundayServicePage() {
   );
 
   if (isLoading) {
-    return 'Wait until data is ready';
+    return <></>;
   }
   return (
     <div className="w-full mt-4">
       <div className="flex flex-col lg:flex-row align-middle gap-2 ">
         <Link
-          href="/sunay-service/create"
-          className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md flex lg:w-48 text-center"
+          href="/sunday-service/create"
+          className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-none flex lg:w-48 text-center"
         >
           <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
           <p className="ml-1 align-middle">Create new</p>
         </Link>
-        <div className="flex flex-row w-full items-center border-b border-white/20 py-1">
+        <div className="flex flex-row w-full items-center bg-zinc-900 border border-white/20 py-1 px-2">
           <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
           <input
             id="search"
@@ -54,13 +54,11 @@ export default function SundayServicePage() {
                 key={item._id}
                 className="grid gap-2 md:grid-cols-6 sm:grid-cols-4 xs:grid-cols-1 
                             p-4 mb-2
-                            border dark:border-white/20 rounded-xl 
-                            bg-gradient-to-br dark:from-black dark:to-zinc-900 from-white to-zinc-100
-                          text-black dark:text-white
+                            bg-zinc-900
                             overflow-hidden"
               >
                 <div className="flex flex-row md:col-span-5 sm:col-span-3 xs:col-span-1 ">
-                  <div className={`w-1 flex-none rounded-md bg-red-600`} />
+                  <div className={`w-1 flex-none rounded-none bg-red-600`} />
                   <div className="flex flex-col ml-6">
                     <p className="font-semibold">{item.name}</p>
                     <p>{convertDate(item.date)}</p>
@@ -69,13 +67,10 @@ export default function SundayServicePage() {
                 <div className="flex flex-row sm:flex-col gap-1">
                   <Link
                     href={`/sunday-service/details/${item._id}`}
-                    className="px-2 rounded-sm text-center border border-white/20 text-white lg:hover:text-black lg:hover:bg-white duration-200"
+                    className="px-2 rounded-none text-center border border-white/20 text-white/50 lg:hover:text-black lg:hover:bg-white duration-200"
                   >
                     Details
                   </Link>
-                  <button className="px-2 rounded-sm text-center border border-white/20 text-white lg:hover:text-black lg:hover:bg-white duration-200">
-                    Share
-                  </button>
                 </div>
               </li>
             );

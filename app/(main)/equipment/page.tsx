@@ -86,12 +86,12 @@ export default function EquipmentPage() {
         <div className="flex flex-col lg:flex-row align-middle gap-2 ">
           <Link
             href="/equipment/create"
-            className=" bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex lg:w-48 text-center border border-zinc-600"
+            className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-none flex lg:w-48 text-center"
           >
             <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
             <p className="ml-1 align-middle">Create new</p>
           </Link>
-          <div className="flex flex-row w-full items-center border border-white/20 py-1 px-2">
+          <div className="flex flex-row w-full items-center bg-zinc-900 border border-white/20 py-1 px-2">
             <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
             <input
               id="search"

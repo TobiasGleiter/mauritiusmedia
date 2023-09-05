@@ -19,13 +19,13 @@ export default function SundayServicePage({ params }: any) {
 
   return (
     <div className="w-full text-white mt-4 space-y-4">
-      <div className="flex text-lg antialiased font-bold items-center text-white/70 border-b border-white/20 mb-4">
+      <div className="flex font-bold text-lg antialiased mb-2 items-center">
         Details
         {isValidating && <BaseIcon icon="spinner" style="ml-2 animate-spin" />}
       </div>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4 p-4 bg-zinc-900">
         <div
-          className={`w-1 h flex-none rounded-md bg-primary-600
+          className={`w-1 h flex-none rounded-none bg-primary-600
            `}
         />
         <div className="flex flex-col gap-2">

@@ -24,7 +24,7 @@ export default function SignInPage() {
           className=" mb-4"
         />
         <h1 className="w-full mb-2 text-center ">Signin /w</h1>
-        <div className="mb-2">
+        <div className="flex flex-col mb-2 space-y-2">
           {/** React Suspense along with a fallback aids in promptly displaying the Login page. */}
           <Suspense fallback={<SpinnerLoading />}>
             {/** Incorporate additional providers, ensuring that the Icon is included within BaseIcon(). */}

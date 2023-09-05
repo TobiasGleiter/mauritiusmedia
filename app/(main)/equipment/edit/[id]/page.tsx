@@ -1,11 +1,14 @@
 'use client';
 
 import BaseIcon from '@/components/icons/base/BaseIcon';
+import BaseListbox from '@/components/listbox/base/BaseListbox';
 import { updateEquipment } from '@/helpers/equipment/api';
 import { selectColorFromLocation } from '@/helpers/equipment/color';
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { useState } from 'react';
+
+const labelsCategory = ['Audio', 'Video', 'Stream', 'Licht', 'Sonstiges'];
+const labelsLocation = ['Kirche', 'Gemeindehaus', 'Allgemein', 'Pfarrscheuer'];
 
 export default function EquipmentPage({ params }: any) {
   const { id } = params;
@@ -59,22 +62,18 @@ export default function EquipmentPage({ params }: any) {
         </div>
         <div className="flex flex-col w-full">
           <p className="font-bold text-xs text-secondary-600">Category</p>
-          <input
-            onChange={(e) => setCategory(e.target.value)}
+          <BaseListbox
+            labels={labelsCategory}
             value={category}
-            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
-            type="text"
-            placeholder="Audio | Video | Stream | Licht"
+            setValue={setCategory}
           />
         </div>
         <div className="flex flex-col w-full">
           <p className="font-bold text-xs text-secondary-600">Location</p>
-          <input
-            onChange={(e) => setLocation(e.target.value)}
+          <BaseListbox
+            labels={labelsLocation}
             value={location}
-            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
-            type="text"
-            placeholder="Kirche | Gemeindehaus | Allgmein"
+            setValue={setLocation}
           />
         </div>
         <button
@@ -82,7 +81,7 @@ export default function EquipmentPage({ params }: any) {
           className="mt-4 bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex  text-center border border-zinc-600"
         >
           <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
-          <p className="ml-1 align-middle">Create new</p>
+          <p className="ml-1 align-middle">Update</p>
         </button>
       </form>
     </div>

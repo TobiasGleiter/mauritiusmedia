@@ -107,25 +107,41 @@ export default function EquipmentPage() {
         <div className="flex gap-1">
           <button
             onClick={() => handleFilterType(null)}
-            className="px-2 rounded-xl bg-zinc-900 lg:hover:border-secondary-600 lg:hover:text-secondary-600 duration-200 text-zinc-400 text-center border border-zinc-600"
+            className={`px-2 rounded-xl ${
+              filterType === null
+                ? 'bg-primary-600 text-black'
+                : 'bg-zinc-900 text-zinc-400'
+            } antialiased text-center `}
           >
             All
           </button>
           <button
             onClick={() => handleFilterType('Audio')}
-            className="px-2 rounded-xl bg-zinc-900 lg:hover:border-secondary-600 lg:hover:text-secondary-600 duration-200 text-zinc-400 text-center border border-zinc-600"
+            className={`px-2 rounded-xl ${
+              filterType === 'Audio'
+                ? 'bg-primary-600 text-black'
+                : 'bg-zinc-900 text-zinc-400'
+            } antialiased text-center `}
           >
             Audio
           </button>
           <button
             onClick={() => handleFilterType('Video')}
-            className="px-2 rounded-xl bg-zinc-900 lg:hover:border-secondary-600 lg:hover:text-secondary-600 duration-200 text-zinc-400 text-center border border-zinc-600"
+            className={`px-2 rounded-xl ${
+              filterType === 'Video'
+                ? 'bg-primary-600 text-black'
+                : 'bg-zinc-900 text-zinc-400'
+            } antialiased text-center `}
           >
             Video
           </button>
           <button
             onClick={() => handleFilterType('Licht')}
-            className="px-2 rounded-xl bg-zinc-900 lg:hover:border-secondary-600 lg:hover:text-secondary-600 duration-200 text-zinc-400 text-center border border-zinc-600"
+            className={`px-2 rounded-xl ${
+              filterType === 'Licht'
+                ? 'bg-primary-600 text-black'
+                : 'bg-zinc-900 text-zinc-400'
+            } antialiased text-center `}
           >
             Licht
           </button>

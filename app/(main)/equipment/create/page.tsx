@@ -1,15 +1,19 @@
 'use client';
 
 import BaseIcon from '@/components/icons/base/BaseIcon';
+import BaseListbox from '@/components/listbox/base/BaseListbox';
 import { createEquipment } from '@/helpers/equipment/api';
 import { selectColorFromLocation } from '@/helpers/equipment/color';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+const labelsCategory = ['Audio', 'Video', 'Stream', 'Licht', 'Sonstiges'];
+const labelsLocation = ['Kirche', 'Gemeindehaus', 'Allgemein', 'Pfarrscheuer'];
+
 export default function CreateEquipmentPage() {
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [location, setLocation] = useState('');
+  const [category, setCategory] = useState('Audio');
+  const [location, setLocation] = useState('Kirche');
 
   const router = useRouter();
 
@@ -58,22 +62,18 @@ export default function CreateEquipmentPage() {
         </div>
         <div className="flex flex-col w-full">
           <p className="font-bold text-xs text-secondary-600">Category</p>
-          <input
-            onChange={(e) => setCategory(e.target.value)}
+          <BaseListbox
+            labels={labelsCategory}
             value={category}
-            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
-            type="text"
-            placeholder="Audio | Video | Stream | Licht"
+            setValue={setCategory}
           />
         </div>
         <div className="flex flex-col w-full">
           <p className="font-bold text-xs text-secondary-600">Location</p>
-          <input
-            onChange={(e) => setLocation(e.target.value)}
+          <BaseListbox
+            labels={labelsLocation}
             value={location}
-            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
-            type="text"
-            placeholder="Kirche | Gemeindehaus | Allgmein"
+            setValue={setLocation}
           />
         </div>
         <button

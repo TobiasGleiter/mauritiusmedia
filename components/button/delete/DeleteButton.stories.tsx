@@ -3,7 +3,7 @@ import DeleteButton, { IDeleteButton } from './DeleteButton';
 import { mockDeleteButtonProps } from './DeleteButton.mocks';
 
 export default {
-  title: 'templates/DeleteButton',
+  title: 'buttons/DeleteButton',
   component: DeleteButton,
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes

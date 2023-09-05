@@ -1,8 +1,8 @@
 'use client';
 
-import BaseIcon from '@/components/icons/base/BaseIcon';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
+import BaseIcon from '../../icons/base/BaseIcon';
 
 export interface ISignInButton {
   /**

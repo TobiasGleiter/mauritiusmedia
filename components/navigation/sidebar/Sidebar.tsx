@@ -1,8 +1,9 @@
 'use client';
-import BaseIcon from '@/components/icons/base/BaseIcon';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import BaseIcon from '../../icons/base/BaseIcon';
 
 export interface ISidebar {}
 

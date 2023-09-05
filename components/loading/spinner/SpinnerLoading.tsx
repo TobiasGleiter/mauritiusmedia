@@ -1,4 +1,4 @@
-import BaseIcon from '@/components/icons/base/BaseIcon';
+import BaseIcon from '../../icons/base/BaseIcon';
 
 export interface ISpinnerLoading {}
 

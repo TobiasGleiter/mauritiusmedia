@@ -3,7 +3,7 @@ import EquipmentCard, { IEquipmentCard } from './EquipmentCard';
 import { mockEquipmentCardProps } from './EquipmentCard.mocks';
 
 export default {
-  title: 'templates/EquipmentCard',
+  title: 'cards/EquipmentCard',
   component: EquipmentCard,
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes

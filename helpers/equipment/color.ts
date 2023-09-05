@@ -1,12 +1,12 @@
-export const selectColorFromCategory = (category: string) => {
-  let color = 'red';
+export const selectColorFromLocation = (location: string) => {
+  let color = '';
 
-  switch (category) {
-    case 'Kirche':
+  switch (location) {
+    case 'kirche':
       color = 'yellow';
       break;
     case 'gemeindehaus':
-      color = 'yellow';
+      color = 'blue';
       break;
     case 'allgemein':
       color = 'red';

@@ -1,6 +1,8 @@
 'use client';
 
+import BaseIcon from '@/components/icons/base/BaseIcon';
 import { updateEquipment } from '@/helpers/equipment/api';
+import { selectColorFromLocation } from '@/helpers/equipment/color';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useState } from 'react';
@@ -27,8 +29,10 @@ export default function EquipmentPage({ params }: any) {
       return;
     }
 
-    const body = JSON.stringify({ name, category, location });
+    const color = selectColorFromLocation(location.toLocaleLowerCase());
+    const body = JSON.stringify({ name, category, location, color });
     const res = await updateEquipment(id, body);
+
     if (res) {
       router.push('/equipment');
     }
@@ -36,39 +40,49 @@ export default function EquipmentPage({ params }: any) {
 
   return (
     <div className="w-full mt-4">
-      <div className="flex text-lg antialiased font-bold items-center text-white/70 border-b border-white/20 mb-4">
+      <div className="flex font-bold text-lg antialiased mb-2 items-center">
         Update Equipment
       </div>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 w-full lg:w-96"
       >
-        <input
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
-          type="text"
-          placeholder="Name"
-        />
-        <input
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
-          type="text"
-          placeholder="Category"
-        />
-        <input
-          onChange={(e) => setLocation(e.target.value)}
-          value={location}
-          className="border border-white/20 rounded-md bg-transparent py-1 px-2"
-          type="text"
-          placeholder="Location"
-        />
+        <div className="flex flex-col w-full">
+          <p className="font-bold text-xs text-secondary-600">Name</p>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
+            type="text"
+            placeholder="..."
+          />
+        </div>
+        <div className="flex flex-col w-full">
+          <p className="font-bold text-xs text-secondary-600">Category</p>
+          <input
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
+            type="text"
+            placeholder="Audio | Video | Stream | Licht"
+          />
+        </div>
+        <div className="flex flex-col w-full">
+          <p className="font-bold text-xs text-secondary-600">Location</p>
+          <input
+            onChange={(e) => setLocation(e.target.value)}
+            value={location}
+            className="border border-white/20 rounded-none bg-transparent py-1 px-2"
+            type="text"
+            placeholder="Kirche | Gemeindehaus | Allgmein"
+          />
+        </div>
         <button
           type="submit"
-          className="bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-md lg:w-32 text-center"
+          className="mt-4 bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex  text-center border border-zinc-600"
         >
-          Update
+          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
+          <p className="ml-1 align-middle">Create new</p>
         </button>
       </form>
     </div>

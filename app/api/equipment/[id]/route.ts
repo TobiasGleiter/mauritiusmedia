@@ -45,7 +45,7 @@ export async function PUT(request: Request, { params }: IEquipment) {
     );
   }
 
-  const { name, category, location } = await request.json();
+  const { name, category, location, color } = await request.json();
   const collection = await Connect('equipment');
   const response = await collection.updateOne(
     { _id: new ObjectId(id) },
@@ -54,6 +54,7 @@ export async function PUT(request: Request, { params }: IEquipment) {
         name,
         category,
         location,
+        color,
       },
     }
   );

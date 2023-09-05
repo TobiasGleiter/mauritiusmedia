@@ -33,3 +33,20 @@ export const updateEquipment = async (id: string, body: any) => {
     throw new Error(error);
   }
 };
+
+export const createEquipment = async (body: any) => {
+  try {
+    const res = await fetch(`/api/equipment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+    if (res.ok) {
+      return true;
+    }
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

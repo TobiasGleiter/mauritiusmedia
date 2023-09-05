@@ -1,22 +1,26 @@
-export interface IEquipmentFilter {
-  data: any;
-  searchTerm: string;
-  filterAttributes: string[];
-}
-
 export const EquipmentFilter = (
-  data: any,
-  searchTerm: any,
-  filterAttributes: any
-): IEquipmentFilter[] => {
-  if (!searchTerm || !filterAttributes.length) {
+  data: any[],
+  searchTerm: string,
+  filterAttributes: string[],
+  filterType: string | null
+): any[] => {
+  if (!searchTerm && filterType === null) {
     return data;
   }
 
-  return data.filter((result: any) => {
-    const searchTermLowerCase = searchTerm.toLowerCase();
-    return filterAttributes.some((attribute: any) =>
-      result[attribute].toLowerCase().includes(searchTermLowerCase)
-    );
+  const searchTermLowerCase = searchTerm.toLowerCase();
+
+  return data.filter((result) => {
+    const matchesSearchTerm = searchTerm
+      ? filterAttributes.some((attribute) =>
+          result[attribute].toLowerCase().includes(searchTermLowerCase)
+        )
+      : true;
+
+    const matchesFilterType = filterType
+      ? result.category.toLowerCase() === filterType.toLowerCase()
+      : true;
+
+    return matchesSearchTerm && matchesFilterType;
   });
 };

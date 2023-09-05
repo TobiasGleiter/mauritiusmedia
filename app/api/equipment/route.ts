@@ -27,9 +27,14 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, category, location } = body;
+  const { name, category, location, color } = body;
   const collection = await Connect('equipment');
-  const response = await collection.insertOne({ name, category, location });
+  const response = await collection.insertOne({
+    name,
+    category,
+    location,
+    color,
+  });
 
   return NextResponse.json({ response }, { status: 201 });
 }

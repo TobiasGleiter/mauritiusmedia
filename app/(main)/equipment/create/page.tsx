@@ -1,5 +1,8 @@
 'use client';
 
+import BaseIcon from '@/components/icons/base/BaseIcon';
+import { createEquipment } from '@/helpers/equipment/api';
+import { selectColorFromLocation } from '@/helpers/equipment/color';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -19,28 +22,18 @@ export default function CreateEquipmentPage() {
       return;
     }
 
-    const body = JSON.stringify({ name, category, location });
-    try {
-      const res = await fetch(`/api/equipment`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      });
+    let color = selectColorFromLocation(location.toLowerCase());
+    const body = JSON.stringify({ name, category, location, color });
+    const res = await createEquipment(body);
 
-      if (res.ok) {
-        /*
+    if (res) {
+      /*
         await fetch(
           `${baseURL}/api/revalidate?tag=equipment&secret=${process.env.SECRET_REVALIDATION_TOKEN}`,
           { method: 'POST' }
         );
         */
-        //router.refresh();
-        router.push('/equipment');
-      }
-    } catch (error: any) {
-      throw new Error('Failed to create new Equipment');
+      router.push('/equipment');
     }
   };
 
@@ -60,7 +53,7 @@ export default function CreateEquipmentPage() {
             value={name}
             className="border border-white/20 rounded-none bg-transparent py-1 px-2"
             type="text"
-            placeholder="XLR 3-Pin 10m..."
+            placeholder="..."
           />
         </div>
         <div className="flex flex-col w-full">
@@ -70,7 +63,7 @@ export default function CreateEquipmentPage() {
             value={category}
             className="border border-white/20 rounded-none bg-transparent py-1 px-2"
             type="text"
-            placeholder="Audio..."
+            placeholder="Audio | Video | Stream | Licht"
           />
         </div>
         <div className="flex flex-col w-full">
@@ -80,14 +73,15 @@ export default function CreateEquipmentPage() {
             value={location}
             className="border border-white/20 rounded-none bg-transparent py-1 px-2"
             type="text"
-            placeholder="Location"
+            placeholder="Kirche | Gemeindehaus | Allgmein"
           />
         </div>
         <button
           type="submit"
-          className="bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-none lg:w-32 text-center"
+          className="mt-4 bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex  text-center border border-zinc-600"
         >
-          Add Item
+          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
+          <p className="ml-1 align-middle">Create new</p>
         </button>
       </form>
     </div>

@@ -2,6 +2,7 @@ import { IBaseListbox } from './BaseListbox';
 
 const base: IBaseListbox = {
   labels: ['Audio', 'Video', 'Stream', 'Licht'],
+  placeholder: 'Any',
   value: { name: 'Audio', color: '' },
   setValue: () => {},
   buttonStyle: 'w-32 bg-zinc-900',

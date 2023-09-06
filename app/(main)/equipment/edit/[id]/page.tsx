@@ -64,6 +64,7 @@ export default function EquipmentPage({ params }: any) {
           <p className="font-bold text-xs text-secondary-600">Category</p>
           <BaseListbox
             labels={labelsCategory}
+            placeholder={labelsCategory[0]}
             value={category}
             setValue={setCategory}
           />
@@ -72,6 +73,7 @@ export default function EquipmentPage({ params }: any) {
           <p className="font-bold text-xs text-secondary-600">Location</p>
           <BaseListbox
             labels={labelsLocation}
+            placeholder={labelsLocation[0]}
             value={location}
             setValue={setLocation}
           />

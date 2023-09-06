@@ -1,6 +1,7 @@
 'use client';
 
 import BaseIcon from '@/components/icons/base/BaseIcon';
+import { deleteEquipment } from '@/helpers/equipment/api';
 import { fetcher } from '@/helpers/fetcher';
 import useSWR from 'swr';
 
@@ -12,6 +13,13 @@ export default function EquipmentPage({ params }: any) {
     isLoading,
     isValidating,
   } = useSWR(`/api/equipment/${id}`, fetcher);
+
+  const handleDelete = async (id: any) => {
+    if (!id) {
+      return;
+    }
+    await deleteEquipment(id);
+  };
 
   if (isLoading) {
     return <></>;

@@ -1,10 +1,11 @@
+'use client';
 export const EquipmentFilter = (
   data: any[],
   searchTerm: string,
   filterAttributes: string[],
   filterType: string | null
 ): any[] => {
-  if (!searchTerm && filterType === null) {
+  if ((!searchTerm && filterType === null) || filterType === 'All') {
     return data;
   }
 
@@ -23,4 +24,33 @@ export const EquipmentFilter = (
 
     return matchesSearchTerm && matchesFilterType;
   });
+};
+
+export const FilterEquipment = (
+  data: any[],
+  showCategory: string,
+  filterLocation: string
+) => {
+  if (!data) {
+    return [];
+  }
+
+  if (showCategory === 'All' && filterLocation !== 'Nothing') {
+    return data.filter((item) => {
+      // Check if the 'category' and 'location' match the provided values
+      return item.location === filterLocation;
+    });
+  } else if (filterLocation === 'Nothing' && showCategory !== 'All') {
+    return data.filter((item) => {
+      // Check if the 'category' and 'location' match the provided values
+      return item.category === showCategory;
+    });
+  } else if (filterLocation !== 'Nothing' && showCategory !== 'All') {
+    return data.filter((item) => {
+      // Check if the 'category' and 'location' match the provided values
+      return item.category === showCategory && item.location === filterLocation;
+    });
+  } else {
+    return data;
+  }
 };

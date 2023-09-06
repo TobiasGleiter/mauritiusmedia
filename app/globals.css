@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 222, 222, 222;
+  --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 11, 11, 11;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(0, 0, 0);
+  background: rgb(245, 246, 247);
 }
 
 /* Globale Stile für die Scrollleiste */
@@ -25,19 +25,19 @@ html {
 }
 
 .red {
-  background-color: #d40b1b;
+  background-color: #ff2e00;
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #fdd70e;
+}
+
+.blue {
+  background-color: #00a3ff;
 }
 
 .green {
   background-color: #55c90a;
-}
-
-.blue {
-  background-color: #1014ff;
 }
 
 .purple {

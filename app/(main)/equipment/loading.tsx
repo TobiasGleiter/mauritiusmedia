@@ -1,12 +1,15 @@
 export default function Loading() {
   return (
-    <div className="w-full mt-4">
-      <div className="flex flex-col lg:flex-row align-middle gap-2 ">
-        <div className="h-8 animate-pulse bg-zinc-900 w-full text-zinc-400 p-1 rounded-none flex lg:w-48 text-center border border-zinc-600" />
-        <div className="h-8 animate-pulse flex flex-row w-full items-center border border-white/20 py-1 px-2" />
+    <div className="w-full mt-4 mb-40">
+      <div className="ACTIONS">
+        <h1 className="text-3xl font-bold animate-pulse">Actions</h1>
+        <div className="flex lg:flex-row md:flex-row flex-col mt-4 gap-4">
+          <div className="animate-pulse h-20 bg-white py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500" />
+          <div className="animate-pulse h-20 bg-white py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500" />
+        </div>
       </div>
-      <div className="mt-6">
-        <div className="h-8 w-32 rounded-xl animate-pulse flex text-lg font-bold mb-2 items-center bg-zinc-900" />
+      <div className="EQUIPMENT mt-16 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen animate-pulse">
+        <h1 className="text-3xl font-bold">Equipment</h1>
       </div>
     </div>
   );

@@ -1,79 +1,85 @@
 'use client';
 
-import EquipmentCard from '@/components/card/equipment/EquipmentCard';
-import BaseIcon from '@/components/icons/base/BaseIcon';
-import { deleteEquipment } from '@/helpers/equipment/api';
-import { EquipmentFilter } from '@/helpers/equipment/filter';
+import BaseListbox from '@/components/listbox/base/BaseListbox';
+import { FilterEquipment } from '@/helpers/equipment/filter';
 import { fetcher } from '@/helpers/fetcher';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 
+const labelsCategory = [
+  'All',
+  'Audio',
+  'Video',
+  'Stream',
+  'Licht',
+  'Sonstiges',
+];
+
+const labelsLocation = [
+  'Nothing',
+  'Kirche',
+  'Gemeindehaus',
+  'Allgemein',
+  'Pfarrscheuer',
+];
+
 export default function EquipmentPage() {
-  const { data: session } = useSession();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState<string | null>(null);
-  const filterAttributes = ['name', 'location', 'category'];
+  const [showCategory, setShowCategory] = useState('All');
+  const [filterLocation, setFilterLocation] = useState('Nothing');
+
   const { data, isLoading, isValidating } = useSWR('/api/equipment', fetcher);
 
-  const handleDelete = async (id: any) => {
-    if (!id) {
-      return;
-    }
-    await deleteEquipment(id);
-  };
-
-  let filteredData = EquipmentFilter(
-    data,
-    searchTerm,
-    filterAttributes,
-    filterType
-  );
-
-  const handleFilterType = (type: string | null) => {
-    setFilterType(type);
-    filteredData = EquipmentFilter(
-      data,
-      searchTerm,
-      filterAttributes,
-      filterType
-    );
-  };
+  let filteredData = FilterEquipment(data, showCategory, filterLocation);
 
   if (isLoading) {
     return (
       <div className="w-full mt-4">
-        <div className="flex flex-col lg:flex-row align-middle gap-2 ">
-          <Link
-            href="/equipment/create"
-            className=" bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex lg:w-48 text-center border border-zinc-600"
-          >
-            <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
-            <p className="ml-1 align-middle">Create new</p>
-          </Link>
-          <div className="flex flex-row w-full items-center border border-white/20 py-1 px-2">
-            <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
-            <input
-              id="search"
-              name="search"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search..."
-              className="ml-1 focus:outline-none bg-transparent resize-none"
-            />
+        <div className="ACTIONS">
+          <h1 className="text-3xl font-bold">Actions</h1>
+          <div className="flex lg:flex-row md:flex-row flex-col mt-4 gap-4">
+            <Link
+              href="/equipment/create"
+              className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
+            >
+              <h2 className="text-2xl antialiased">Create</h2>
+              <p className="text-secondary-700 antialiased">new Equipment</p>
+            </Link>
+            <div className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
+              <h2 className="text-2xl antialiased">Search</h2>
+              <p className="text-secondary-700 antialiased">in Equipment</p>
+            </div>
           </div>
         </div>
-        <div className="mt-6">
-          <div className="flex text-lg font-bold mb-2 items-center">
-            Equipment
-            {isValidating && (
-              <BaseIcon
-                icon="spinner"
-                style="ml-2 animate-spin text-primary-600"
+        <div className="EQUIPMENT mt-16 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+          <h1 className="text-3xl font-bold">Equipment</h1>
+          <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
+            <div className="flex items-center align-middle">
+              <p className="text-base text-secondary-600 antialiased">Show</p>
+
+              <BaseListbox
+                labels={labelsCategory}
+                placeholder={labelsCategory[0]}
+                value={showCategory}
+                setValue={setShowCategory}
               />
-            )}
+            </div>
+            <div className="flex w-full items-center align-middle">
+              <p className="flex text-base text-secondary-600 antialiased">
+                Filter
+              </p>
+              <BaseListbox
+                labels={labelsLocation}
+                placeholder={labelsLocation[0]}
+                value={filterLocation}
+                setValue={setFilterLocation}
+              />
+            </div>
+          </div>
+          <div className="CARDS flex flex-col mt-4 gap-2">
+            <div className="shadow-md h-28 border bg-secondary-100/40 border-secondary-800/10 rounded-2xl animate-pulse" />
+            <div className="shadow-md h-28 border bg-secondary-100/60 border-secondary-800/10 rounded-2xl animate-pulse" />
+            <div className="shadow-md h-28 border bg-secondary-100/20 border-secondary-800/10 rounded-2xl animate-pulse" />
           </div>
         </div>
       </div>
@@ -81,95 +87,70 @@ export default function EquipmentPage() {
   }
 
   return (
-    <div className="w-full mt-4">
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col lg:flex-row align-middle gap-2 ">
+    <div className="w-full mt-4 mb-40">
+      <div className="ACTIONS">
+        <h1 className="text-3xl font-bold">Actions</h1>
+        <div className="flex lg:flex-row md:flex-row flex-col mt-4 gap-4">
           <Link
             href="/equipment/create"
-            className=" bg-primary-600 w-full lg:hover:bg-white duration-200 text-black p-1 rounded-none flex lg:w-48 text-center"
+            className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
           >
-            <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
-            <p className="ml-1 align-middle">Create new</p>
+            <h2 className="text-2xl antialiased">Create</h2>
+            <p className="text-secondary-700 antialiased">new Equipment</p>
           </Link>
-          <div className="flex flex-row w-full items-center bg-zinc-900 border border-white/20 py-1 px-2">
-            <BaseIcon icon="search" style="w-5 h-5 text-white/70" />
-            <input
-              id="search"
-              name="search"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search..."
-              className="ml-1 focus:outline-none bg-transparent resize-none"
+          <div className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
+            <h2 className="text-2xl antialiased">Search</h2>
+            <p className="text-secondary-700 antialiased">in Equipment</p>
+          </div>
+        </div>
+      </div>
+      <div className="EQUIPMENT mt-16 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+        <h1 className="text-3xl font-bold">Equipment</h1>
+        <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
+          <div className="flex items-center align-middle">
+            <p className="text-base text-secondary-600 antialiased">Show</p>
+
+            <BaseListbox
+              labels={labelsCategory}
+              placeholder={labelsCategory[0]}
+              value={showCategory}
+              setValue={setShowCategory}
+            />
+          </div>
+          <div className="flex w-full items-center align-middle">
+            <p className="flex text-base text-secondary-600 antialiased">
+              Filter
+            </p>
+            <BaseListbox
+              labels={labelsLocation}
+              placeholder={labelsLocation[0]}
+              value={filterLocation}
+              setValue={setFilterLocation}
             />
           </div>
         </div>
-        <div className="flex gap-1">
-          <button
-            onClick={() => handleFilterType(null)}
-            className={`px-2 rounded-xl ${
-              filterType === null
-                ? 'bg-primary-600 text-black'
-                : 'bg-zinc-900 text-zinc-400'
-            } antialiased text-center `}
-          >
-            All
-          </button>
-          <button
-            onClick={() => handleFilterType('Audio')}
-            className={`px-2 rounded-xl ${
-              filterType === 'Audio'
-                ? 'bg-primary-600 text-black'
-                : 'bg-zinc-900 text-zinc-400'
-            } antialiased text-center `}
-          >
-            Audio
-          </button>
-          <button
-            onClick={() => handleFilterType('Video')}
-            className={`px-2 rounded-xl ${
-              filterType === 'Video'
-                ? 'bg-primary-600 text-black'
-                : 'bg-zinc-900 text-zinc-400'
-            } antialiased text-center `}
-          >
-            Video
-          </button>
-          <button
-            onClick={() => handleFilterType('Licht')}
-            className={`px-2 rounded-xl ${
-              filterType === 'Licht'
-                ? 'bg-primary-600 text-black'
-                : 'bg-zinc-900 text-zinc-400'
-            } antialiased text-center `}
-          >
-            Licht
-          </button>
-        </div>
-      </div>
-      <div className="mt-6">
-        <div className="flex text-lg font-bold mb-2 items-center">
-          Equipment
-          {isValidating && (
-            <BaseIcon
-              icon="spinner"
-              style="ml-2 animate-spin text-primary-600"
-            />
-          )}
-        </div>
-        <ul className="space-y-2 mb-20">
+        <div className="CARDS flex flex-col mt-4 gap-2">
           {filteredData.map((item: any) => {
             return (
-              <li key={item._id}>
-                <EquipmentCard
-                  equipment={item}
-                  session={session}
-                  handleDelete={handleDelete}
-                />
-              </li>
+              <Link
+                key={item._id}
+                href={`/equipment/details/${item._id}`}
+                className="flex flex-col h-28 shadow-md border border-secondary-800/10 rounded-2xl px-4 pt-3"
+              >
+                <h2 className="text-xl antialiased font-medium">{item.name}</h2>
+                <p className="text-lg text-secondary-600 antialiased font-medium">
+                  {item.category}
+                </p>
+                <div className="flex text-lg text-secondary-600 text-center align-middle">
+                  <div className={`rounded-full mt-1 w-5 h-5 ${item.color}`} />
+                  <p className="ml-1 antialiased font-medium">
+                    {item.location}
+                  </p>
+                </div>
+              </Link>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

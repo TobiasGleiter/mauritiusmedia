@@ -17,9 +17,9 @@ const Header: React.FC<IHeader> = () => {
   const session = useSession();
 
   return (
-    <header className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full z-20 py-4 border-b border-zinc-900 text-secondary-600 bg-black">
+    <header className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full z-20 py-4 text-secondary-600">
       <nav className="mx-auto flex max-w-7xl align-middle items-center justify-between px-4 text">
-        <div className="flex gap-1 antialiased font-semibold">
+        <div className="flex gap-1 antialiased">
           <button
             onClick={handleRoute}
             className="hover:text-primary-600 duration-200"
@@ -30,7 +30,7 @@ const Header: React.FC<IHeader> = () => {
           <p className="cursor-default">{path[2]}</p>
         </div>
         <div className="flex">
-          <p className="font-bold antialiased text-sm border border-zinc-900 px-1">
+          <p className="font-bold antialiased text-sm border  px-1">
             {session.data?.user.role.toUpperCase()}
           </p>
         </div>

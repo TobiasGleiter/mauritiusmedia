@@ -1,6 +1,8 @@
 'use client';
 import {
   BiBible,
+  BiCaretDown,
+  BiCaretRight,
   BiChurch,
   BiListPlus,
   BiListUl,
@@ -20,6 +22,9 @@ const ICONS_MAP: any = {
   spinner: <ImSpinner9 />,
   arrowdown: <ImArrowDown2 />,
   arrowrightup: <ImArrowUpRight2 />,
+
+  caretright: <BiCaretRight />,
+  caretdown: <BiCaretDown />,
 
   search: <BiSearch />,
 

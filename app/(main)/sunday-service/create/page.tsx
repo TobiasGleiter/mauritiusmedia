@@ -1,7 +1,7 @@
 'use client';
 
-import BaseIcon from '@/components/icons/base/BaseIcon';
 import { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 interface WorkflowStep {
   name: string;
@@ -37,8 +37,10 @@ export default function CreateSundayService() {
   ) => {
     const { name, value } = e.target;
     const updatedWorkflow = [...item.workflow];
-    // @ts-ignore
-    updatedWorkflow[index][name] = value;
+    updatedWorkflow[index] = {
+      ...updatedWorkflow[index],
+      [name]: value,
+    };
     setItem({
       ...item,
       workflow: updatedWorkflow,
@@ -62,51 +64,106 @@ export default function CreateSundayService() {
     });
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(item); // Replace with API call
+  };
+
+  const handleDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const reorderedWorkflow = [...item.workflow];
+    const [movedStep] = reorderedWorkflow.splice(result.source.index, 1);
+    reorderedWorkflow.splice(result.destination.index, 0, movedStep);
+
+    setItem({
+      ...item,
+      workflow: reorderedWorkflow,
+    });
+  };
+
   return (
-    <div className="w-full mt-4">
-      <div className="flex font-bold text-lg antialiased mb-2 items-center">
-        Create new Sunday Service
-      </div>
-      <form className="flex flex-col gap-2 w-full lg:w-96">
-        <div className="flex flex-col w-full">
-          <p className="font-bold text-xs text-secondary-600">Name</p>
-        </div>
-        <div className="flex flex-col w-full"></div>
-        <div className="flex flex-col w-full">
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={item.name}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="description">Description:</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={item.description}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="date">Date:</label>
+        <input
+          type="datetime-local"
+          id="date"
+          name="date"
+          value={item.date}
+          onChange={handleInputChange}
+        />
+
+        <div>
           <h3>Workflow:</h3>
-          {item.workflow.map((step, index: number) => (
-            <div key={index}>
-              <input
-                type="text"
-                placeholder="Step Name"
-                name="name"
-                value={step.name}
-                onChange={(e) => handleWorkflowInputChange(index, e)}
-              />
-              <input
-                type="text"
-                placeholder="Team"
-                name="team"
-                value={step.team}
-                onChange={(e) => handleWorkflowInputChange(index, e)}
-              />
-              <button type="button" onClick={() => removeWorkflowStep(index)}>
-                Remove
-              </button>
-            </div>
-          ))}
+          <Droppable droppableId="workflow">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {item.workflow.map((step, index) => (
+                  <Draggable
+                    key={index}
+                    draggableId={`step-${index}`}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="p-2 bg-red-500"
+                      >
+                        <input
+                          type="text"
+                          placeholder="Step Name"
+                          name="name"
+                          value={step.name}
+                          onChange={(e) => handleWorkflowInputChange(index, e)}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Team"
+                          name="team"
+                          value={step.team}
+                          onChange={(e) => handleWorkflowInputChange(index, e)}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeWorkflowStep(index)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
           <button type="button" onClick={addWorkflowStep}>
             Add Step
           </button>
         </div>
-        <button
-          type="submit"
-          className="mt-4 bg-zinc-900 w-full lg:hover:border-primary-600 lg:hover:text-primary-600 duration-200 text-zinc-400 p-1 rounded-none flex  text-center border border-zinc-600"
-        >
-          <BaseIcon icon="newequipment" style="ml-1 w-6 h-6 flex-none" />
-          <p className="ml-1 align-middle">Create new</p>
-        </button>
+        <button type="submit">Create Item</button>
       </form>
-    </div>
+    </DragDropContext>
   );
 }

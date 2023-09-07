@@ -26,16 +26,16 @@ export default function SundayServicePage() {
             className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
           >
             <h2 className="text-2xl antialiased">Create</h2>
-            <p className="text-secondary-700 antialiased">new Equipment</p>
+            <p className="text-secondary-700 antialiased">new Sunday Service</p>
           </Link>
           <div className="bg-white h-20 py-2 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
             <h2 className="text-2xl antialiased">Search</h2>
-            <p className="text-secondary-700 antialiased">in Equipment</p>
+            <p className="text-secondary-700 antialiased">in Sunday Service</p>
           </div>
         </div>
       </div>
       <div className="EQUIPMENT mt-16 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
-        <h1 className="text-3xl font-bold">Equipment</h1>
+        <h1 className="text-3xl font-bold">Sunday Service</h1>
         <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
           <div className="flex items-center align-middle"></div>
         </div>

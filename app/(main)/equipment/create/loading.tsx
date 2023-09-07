@@ -1,18 +1,21 @@
 export default function Loading() {
   return (
-    <div className="w-full mt-4">
-      <div className="h-6 w-48 bg-zinc-800 rounded-lg animate-pulse flex font-bold text-lg antialiased mb-2 items-center " />
-      <div className="flex flex-col gap-2 w-full lg:w-96 mt-2">
-        <div className="flex flex-col w-full mt-2">
-          <div className="h-8 bg-zinc-900 animate-puls  rounded-none bg-transparent py-1 px-2" />
+    <div className="w-fit">
+      <div className="BACK flex items-center bg-secondary-200 h-6 w-20 animate-pulse rounded-md" />
+      <div className="CREATE CARD h-[464px] mt-6 py-4 px-4 rounded-2xl shadow-md bg-white sm:w-96">
+        <h1 className="text-3xl font-bold">Create new Equipment</h1>
+        <div className="flex flex-col gap-2 w-full  mt-6">
+          <div className="NAME flex flex-col w-full ">
+            <p className=" antialiased text-base text-secondary-600">Name</p>
+            <div className="w-full h-[32px] bg-secondary-200 rounded-lg animate-pulse" />
+          </div>
+          <div className="DESCRIPTION flex flex-col w-full">
+            <p className=" antialiased text-base text-secondary-600">
+              Description
+            </p>
+            <div className="w-full h-[70px] bg-secondary-100 rounded-lg animate-pulse" />
+          </div>
         </div>
-        <div className="flex flex-col w-full mt-2">
-          <div className="h-8 bg-zinc-900 animate-puls  rounded-none bg-transparent py-1 px-2" />
-        </div>
-        <div className="flex flex-col w-full mt-2">
-          <div className="h-8 bg-zinc-900 animate-puls  rounded-none bg-transparent py-1 px-2" />
-        </div>
-        <div className="mt-4 h-8 animate-pulse flex text-lg font-bold mb-2 items-center bg-zinc-800 border border-white/20" />
       </div>
     </div>
   );

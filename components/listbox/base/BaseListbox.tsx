@@ -23,16 +23,19 @@ const BaseListbox: React.FC<IBaseListbox> = ({
     <Listbox name="category" value={value} onChange={setValue}>
       <div className="relative w-full inline-block text-left">
         <Listbox.Button
-          className={`flex ${buttonStyle} ml-2 px-4 bg-secondary-100 rounded-full items-center justify-center`}
+          className={`flex ${buttonStyle} px-4 bg-secondary-100 rounded-full items-center justify-center`}
         >
           <span className="ml-1 truncate">{value ? value : placeholder}</span>
           <BaseIcon icon="caretdown" style="ml-2" />
         </Listbox.Button>
         <Transition
           as={Fragment}
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
         >
           <Listbox.Options
             className={`absolute w-fit left-0 ${optionStyle} px-4 bg-secondary-100 py-0.5 rounded-xl mt-2 origin-center max-h-min items-center justify-center p-1  text-center shadow-md z-20`}

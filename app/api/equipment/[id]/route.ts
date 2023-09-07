@@ -45,13 +45,14 @@ export async function PUT(request: Request, { params }: IEquipment) {
     );
   }
 
-  const { name, category, location, color } = await request.json();
+  const { name, description, category, location, color } = await request.json();
   const collection = await Connect('equipment');
   const response = await collection.updateOne(
     { _id: new ObjectId(id) },
     {
       $set: {
         name,
+        description,
         category,
         location,
         color,

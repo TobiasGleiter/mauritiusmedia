@@ -11,8 +11,11 @@ export const selectColorFromLocation = (location: string) => {
     case 'allgemein':
       color = 'red';
       break;
+    case 'pfarrscheuer':
+      color = 'purple';
+      break;
     default:
-      color = '';
+      color = 'none';
       break;
   }
 

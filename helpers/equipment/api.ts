@@ -10,7 +10,9 @@ export const deleteEquipment = async (id: any) => {
 
     if (res.ok) {
       mutate('/api/equipment');
+      return res;
     }
+    return res;
   } catch (error: any) {
     throw new Error(error);
   }
@@ -26,9 +28,7 @@ export const updateEquipment = async (id: string, body: any) => {
       body,
     });
 
-    if (res.ok) {
-      return true;
-    }
+    return res;
   } catch (error: any) {
     throw new Error(error);
   }
@@ -43,9 +43,8 @@ export const createEquipment = async (body: any) => {
       },
       body,
     });
-    if (res.ok) {
-      return true;
-    }
+
+    return res;
   } catch (error: any) {
     throw new Error(error);
   }

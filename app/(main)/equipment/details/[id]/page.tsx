@@ -1,12 +1,18 @@
 'use client';
 
 import BaseIcon from '@/components/icons/base/BaseIcon';
+import ButtonListbox from '@/components/listbox/button/ButtonListbox';
 import { deleteEquipment } from '@/helpers/equipment/api';
 import { fetcher } from '@/helpers/fetcher';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function EquipmentPage({ params }: any) {
   const { id } = params;
+  const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const {
     data: equipment,
@@ -18,37 +24,110 @@ export default function EquipmentPage({ params }: any) {
     if (!id) {
       return;
     }
-    await deleteEquipment(id);
+    setIsDeleting(true);
+    const res = await deleteEquipment(id);
+
+    if (!res.ok) {
+      setIsDeleting(false);
+    }
+
+    setIsDeleting(false);
+    router.push('/equipment');
   };
 
+  const items = [
+    {
+      action: () =>
+        router.push(
+          `/equipment/edit/${id}?name=${equipment.name}&category=${equipment.category}&location=${equipment.location}`
+        ),
+      label: 'Edit',
+      icon: 'placeholder',
+      active: 'bg-primary-500',
+    },
+    {
+      action: () => handleDelete(id),
+      label: 'Delete',
+      icon: 'placeholder',
+      active: 'bg-danger-500',
+    },
+  ];
+
   if (isLoading) {
-    return <></>;
+    return (
+      <div className="w-fit">
+        <div className="BACK flex items-center bg-secondary-200 h-6 w-20 animate-pulse rounded-md" />
+        <div className="CREATE CARD h-[261px] mt-6 py-4 px-4 rounded-2xl shadow-md bg-white sm:w-96">
+          <div className="flex items-center">
+            <h1 className="text-3xl font-bold">Details Equipment</h1>
+          </div>
+          <div className="flex flex-col gap-2 w-full  mt-6">
+            <div className="NAME flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">Name</p>
+              <div className="w-full h-[32px] bg-secondary-200 rounded-lg animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="w-full text-white mt-4">
-      <div className="flex font-bold text-lg antialiased mb-2 items-center">
-        Details
-        {isValidating && <BaseIcon icon="spinner" style="ml-2 animate-spin" />}
-      </div>
-      <div className="flex flex-row gap-4 p-4 bg-zinc-900">
-        <div
-          className={`w-1 flex-none rounded-none ${
-            equipment.color ? equipment.color : 'bg-secondary-600'
-          } `}
+    <div className="w-fit">
+      <Link
+        href="/equipment"
+        className="BACK flex items-center text-secondary-500 group"
+      >
+        <BaseIcon
+          icon="arrowback"
+          style="group-hover:text-secondary-800 duration-200"
         />
-        <div className="flex flex-col gap-2">
-          <div>
-            <p className="text-white/50 gont-bold text-xs">Name</p>
-            <p className="font-semibold text-xl ">{equipment.name}</p>
+        <p className=" group-hover:text-secondary-800 duration-200">Back</p>
+      </Link>
+      <div
+        className={`DETAILS CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
+          isDeleting && 'border-danger-500 animate-pulse'
+        } sm:w-96`}
+      >
+        <div className="flex items-center">
+          <h1 className="text-3xl font-bold mr-2">Details Equipment</h1>
+          <ButtonListbox title="" align="right-0" items={items} />
+        </div>
+
+        <div className="INFORMATION mt-6">
+          <div className="flex flex-col w-full ">
+            <p className=" antialiased text-base text-secondary-600">Name</p>
+            <p>{equipment.name}</p>
           </div>
+          {equipment.description && (
+            <div className="flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">
+                Description
+              </p>
+              <p className="h-[70px]">{equipment.description}</p>
+            </div>
+          )}
           <div>
-            <p className="text-white/50 gont-bold text-xs">Category</p>
-            <p className="text-white/80 text-lg">{equipment.category}</p>
+            <div className="flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">
+                Category
+              </p>
+              <p>{equipment.category}</p>
+            </div>
+            <div className="flex flex-col w-full ">
+              <p className="antialiased text-base text-secondary-600">
+                Location
+              </p>
+              <div className="flex items-center text-black">
+                <div
+                  className={`rounded-full mt-1 w-5 h-5 ${equipment.color}`}
+                />
+                <p className="ml-1 text-justify">{equipment.location}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <p className="text-white/50 gont-bold text-xs">Location</p>
-            <p className="text-white/80 text-lg">{equipment.location}</p>
+          <div className="flex justify-center mt-6">
+            <div className="w-64 border-b border-secondary-100" />
           </div>
         </div>
       </div>

@@ -55,7 +55,9 @@ export default function EquipmentPage() {
           <h1 className="text-3xl font-bold">Equipment</h1>
           <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
             <div className="flex items-center align-middle">
-              <p className="text-base text-secondary-600 antialiased">Show</p>
+              <p className="text-base text-secondary-600 antialiased mr-2">
+                Show
+              </p>
 
               <BaseListbox
                 labels={labelsCategory}
@@ -65,7 +67,7 @@ export default function EquipmentPage() {
               />
             </div>
             <div className="flex w-full items-center align-middle">
-              <p className="flex text-base text-secondary-600 antialiased">
+              <p className="flex text-base text-secondary-600 antialiased mr-2">
                 Filter
               </p>
               <BaseListbox
@@ -108,8 +110,9 @@ export default function EquipmentPage() {
         <h1 className="text-3xl font-bold">Equipment</h1>
         <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
           <div className="flex items-center align-middle">
-            <p className="text-base text-secondary-600 antialiased">Show</p>
-
+            <p className="text-base text-secondary-600 antialiased mr-2">
+              Show
+            </p>
             <BaseListbox
               labels={labelsCategory}
               placeholder={labelsCategory[0]}
@@ -118,7 +121,7 @@ export default function EquipmentPage() {
             />
           </div>
           <div className="flex w-full items-center align-middle">
-            <p className="flex text-base text-secondary-600 antialiased">
+            <p className="flex text-base text-secondary-600 antialiased mr-2">
               Filter
             </p>
             <BaseListbox

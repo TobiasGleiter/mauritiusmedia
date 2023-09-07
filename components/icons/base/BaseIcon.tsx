@@ -1,9 +1,12 @@
 'use client';
 import {
+  BiArrowBack,
   BiBible,
   BiCaretDown,
   BiCaretRight,
+  BiCheckbox,
   BiChurch,
+  BiDotsHorizontalRounded,
   BiListPlus,
   BiListUl,
   BiLogIn,
@@ -26,6 +29,10 @@ const ICONS_MAP: any = {
   caretright: <BiCaretRight />,
   caretdown: <BiCaretDown />,
 
+  arrowback: <BiArrowBack />,
+
+  dotmenu: <BiDotsHorizontalRounded />,
+
   search: <BiSearch />,
 
   logo: <BiChurch />,
@@ -38,6 +45,8 @@ const ICONS_MAP: any = {
 
   signin: <BiLogIn />,
   signout: <BiLogOut />,
+
+  placeholder: <BiCheckbox />,
 };
 
 export interface IBaseIcon {

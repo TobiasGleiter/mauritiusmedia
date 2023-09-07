@@ -3,13 +3,14 @@
 import BaseIcon from '@/components/icons/base/BaseIcon';
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
+import Link from 'next/link';
 import useSWR from 'swr';
 
 export default function SundayServicePage({ params }: any) {
   const { id } = params;
 
   const { data, isLoading, isValidating } = useSWR(
-    `/api/sundayservice/${id}`,
+    `/api/sunday-service/${id}`,
     fetcher
   );
 
@@ -18,11 +19,17 @@ export default function SundayServicePage({ params }: any) {
   }
 
   return (
-    <div className="w-full text-white mt-4 space-y-4">
-      <div className="flex font-bold text-lg antialiased mb-2 items-center">
-        Details
-        {isValidating && <BaseIcon icon="spinner" style="ml-2 animate-spin" />}
-      </div>
+    <div className="w-fit">
+      <Link
+        href="/sunday-service"
+        className="BACK flex items-center text-secondary-500 group"
+      >
+        <BaseIcon
+          icon="arrowback"
+          style="group-hover:text-secondary-800 duration-200"
+        />
+        <p className=" group-hover:text-secondary-800 duration-200">Back</p>
+      </Link>
       <div className="flex flex-row gap-4 p-4 bg-zinc-900">
         <div
           className={`w-1 h flex-none rounded-none bg-primary-600

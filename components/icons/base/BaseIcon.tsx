@@ -7,6 +7,7 @@ import {
   BiCheckbox,
   BiChurch,
   BiDotsHorizontalRounded,
+  BiGridHorizontal,
   BiListPlus,
   BiListUl,
   BiLogIn,
@@ -32,6 +33,8 @@ const ICONS_MAP: any = {
   arrowback: <BiArrowBack />,
 
   dotmenu: <BiDotsHorizontalRounded />,
+
+  drag: <BiGridHorizontal />,
 
   search: <BiSearch />,
 

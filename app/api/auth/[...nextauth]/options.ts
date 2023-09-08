@@ -58,7 +58,7 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   events: {
     // this function is called when it is the first time the user signs in
-    createUser: async ({ user }) => {
+    createUser: async () => {
       /*
       // update the database e.g. with paymet information from stripe...
       const collection = await Connect('users');

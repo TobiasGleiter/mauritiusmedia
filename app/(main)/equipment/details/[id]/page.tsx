@@ -4,14 +4,22 @@ import BaseIcon from '@/components/icons/base/BaseIcon';
 import ButtonListbox from '@/components/listbox/button/ButtonListbox';
 import { deleteEquipment } from '@/helpers/equipment/api';
 import { fetcher } from '@/helpers/fetcher';
+import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
 
+const requiredPermissions = ['admin', 'technician', 'dev'];
+
 export default function EquipmentPage({ params }: any) {
   const { id } = params;
   const router = useRouter();
+
+  const { data: session } = useSession();
+  const role = useRole(session);
+
   const [isDeleting, setIsDeleting] = useState(false);
 
   const {
@@ -91,9 +99,11 @@ export default function EquipmentPage({ params }: any) {
       >
         <div className="flex items-center">
           <h1 className="text-3xl font-bold mr-2">Details Equipment</h1>
-          <ButtonListbox title="" align="right-0" items={items} />
+          {hasRequiredPermissionsClient(
+            role as string,
+            requiredPermissions
+          ) && <ButtonListbox title="" align="right-0" items={items} />}
         </div>
-
         <div className="INFORMATION mt-6">
           <div className="flex flex-col w-full ">
             <p className=" antialiased text-base text-secondary-600">Name</p>
@@ -107,6 +117,13 @@ export default function EquipmentPage({ params }: any) {
               <p className="h-[70px]">{equipment.description}</p>
             </div>
           )}
+          {equipment.count && (
+            <div className="flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">Count</p>
+              <p>{equipment.count}</p>
+            </div>
+          )}
+
           <div>
             <div className="flex flex-col w-full ">
               <p className=" antialiased text-base text-secondary-600">

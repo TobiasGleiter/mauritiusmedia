@@ -30,6 +30,7 @@ export default function EquipmentPage({ params }: any) {
     searchParams.get('location') as string
   );
   const [description, setDescription] = useState('');
+  const [count, setCount] = useState('1');
 
   const { data } = useSWR(`/api/equipment/${id}`, fetcher, {
     fallback: { name, category, location, description },
@@ -42,13 +43,14 @@ export default function EquipmentPage({ params }: any) {
       setCategory(data.category);
       setLocation(data.location);
       data.description && setDescription(data.description);
+      data.count && setCount(data.count);
     }
   }, [data]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (!name || !location || !category) {
+    if (!name || !location || !category || !count) {
       // some action
       console.log('Error');
       return;
@@ -64,6 +66,7 @@ export default function EquipmentPage({ params }: any) {
       category,
       location,
       color,
+      count,
     });
     const res = await updateEquipment(id, body);
 
@@ -118,6 +121,18 @@ export default function EquipmentPage({ params }: any) {
               className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4 pb-10"
               type="text"
               placeholder="..."
+            />
+          </div>
+          <div className="COUNT flex flex-col w-full">
+            <p className="antialiased text-base text-secondary-600">Count</p>
+            <input
+              onChange={(e) => setCount(e.target.value)}
+              value={count}
+              className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
+              type="number"
+              min={1}
+              max={100}
+              placeholder="Enter count..."
             />
           </div>
           <div className="flex flex-col w-full">

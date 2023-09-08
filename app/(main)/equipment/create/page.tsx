@@ -14,6 +14,7 @@ const labelsLocation = ['Kirche', 'Gemeindehaus', 'Allgemein', 'Pfarrscheuer'];
 export default function CreateEquipmentPage() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [count, setCount] = useState('1');
   const [category, setCategory] = useState('Audio');
   const [location, setLocation] = useState('Kirche');
 
@@ -28,11 +29,11 @@ export default function CreateEquipmentPage() {
       message: '',
     });
 
-    if (!name || !location || !category) {
+    if (!name || !location || !category || !count) {
       // some action
       setIsError({
         status: true,
-        message: 'Please provide at least name, location and category.',
+        message: 'Please provide at least name, location, count and category.',
       });
       return;
     }
@@ -42,6 +43,7 @@ export default function CreateEquipmentPage() {
     const body = JSON.stringify({
       name,
       description,
+      count,
       category,
       location,
       color,
@@ -100,6 +102,19 @@ export default function CreateEquipmentPage() {
               placeholder="..."
             />
           </div>
+          <div className="COUNT flex flex-col w-full">
+            <p className="antialiased text-base text-secondary-600">Count</p>
+            <input
+              onChange={(e) => setCount(e.target.value)}
+              value={count}
+              className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
+              type="number"
+              min={1}
+              max={100}
+              placeholder="Enter count..."
+            />
+          </div>
+
           <div className="flex flex-col w-full">
             <p className=" antialiased text-base text-secondary-600">
               Category

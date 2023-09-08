@@ -75,7 +75,7 @@ export default function CreateSundayService() {
 
     const body = JSON.stringify(item);
 
-    const res = await createSundayService(body);
+    await createSundayService(body);
   };
 
   const handleDragEnd = (result: any) => {
@@ -104,61 +104,62 @@ export default function CreateSundayService() {
         <p className=" group-hover:text-secondary-800 duration-200">Back</p>
       </Link>
       <div className="CREATE CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white ">
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <h1 className="text-3xl font-bold">Create new Sunday-Service</h1>
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-2 w-full mt-6"
-          >
-            <div className="NAME flex flex-col w-full ">
-              <label
-                htmlFor="name"
-                className=" antialiased text-base text-secondary-600"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={item.name}
-                onChange={handleInputChange}
-                className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
-              />
-            </div>
-            <div className="DESCRIPTION flex flex-col w-full ">
-              <label
-                htmlFor="description"
-                className=" antialiased text-base text-secondary-600"
-              >
-                Description
-              </label>
-              <input
-                type="text"
-                id="description"
-                name="description"
-                value={item.description}
-                onChange={handleInputChange}
-                className="h-20 border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
-              />
-            </div>
-            <div className="DATE flex flex-col w-fit ">
-              <label
-                htmlFor="date"
-                className=" antialiased text-base text-secondary-600"
-              >
-                Date
-              </label>
-              <input
-                type="datetime-local"
-                id="date"
-                name="date"
-                value={item.date}
-                onChange={handleInputChange}
-                className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
-              />
-            </div>
-            <div className="mt-6">
+        <h1 className="text-3xl font-bold">Create new Sunday-Service</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-2 w-full mt-6"
+        >
+          <div className="NAME flex flex-col w-full ">
+            <label
+              htmlFor="name"
+              className=" antialiased text-base text-secondary-600"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={item.name}
+              onChange={handleInputChange}
+              className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
+            />
+          </div>
+          <div className="DESCRIPTION flex flex-col w-full ">
+            <label
+              htmlFor="description"
+              className=" antialiased text-base text-secondary-600"
+            >
+              Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value={item.description}
+              onChange={handleInputChange}
+              className="h-20 border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
+            />
+          </div>
+          <div className="DATE flex flex-col w-fit ">
+            <label
+              htmlFor="date"
+              className=" antialiased text-base text-secondary-600"
+            >
+              Date
+            </label>
+            <input
+              type="datetime-local"
+              id="date"
+              name="date"
+              value={item.date}
+              onChange={handleInputChange}
+              className="border border-secondary-500 text-black rounded-lg bg-transparent py-1 px-4"
+            />
+          </div>
+
+          <div className="mt-6">
+            <DragDropContext onDragEnd={handleDragEnd}>
               <h2 className="text-xl font-bold">Workflow</h2>
               <Droppable droppableId="workflow">
                 {(provided) => (
@@ -234,18 +235,18 @@ export default function CreateSundayService() {
               >
                 Add Step
               </button>
-            </div>
-            <div className="flex justify-center mt-6">
-              <div className="w-64 border-b border-secondary-100" />
-            </div>
-            <button
-              type="submit"
-              className=" flex bg-primary-500 text-black justify-center rounded-full hover:bg-primary-600 duration-200"
-            >
-              Create Item
-            </button>
-          </form>
-        </DragDropContext>
+            </DragDropContext>
+          </div>
+          <div className="flex justify-center mt-6">
+            <div className="w-64 border-b border-secondary-100" />
+          </div>
+          <button
+            type="submit"
+            className=" flex bg-primary-500 text-black justify-center rounded-full hover:bg-primary-600 duration-200"
+          >
+            Create Item
+          </button>
+        </form>
       </div>
     </div>
   );

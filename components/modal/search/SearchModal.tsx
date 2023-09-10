@@ -67,7 +67,7 @@ const SearchModal: React.FC<ISearchModal> = ({ data, closeModal, isOpen }) => {
                           <Link
                             key={item._id}
                             href={`${pathname}/details/${item._id}`}
-                            className="flex flex-row items-center w-full lg:hover:text-primary-500 duration-150 border-b border-secondary-500 border-dashed"
+                            className="flex flex-row w-full lg:hover:text-primary-500 duration-150 border-b border-secondary-500 border-dashed"
                           >
                             <BaseIcon icon="placeholder" style="w-6 h-6" />
                             <p className=" antialiased text-xl">{item.name}</p>

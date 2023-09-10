@@ -32,7 +32,7 @@ const BaseMenu: React.FC<IBaseMenu> = ({ title, links, align }) => {
                     ? active
                       ? 'bg-white text-black'
                       : ''
-                    : ' text-red-600 cursor-not-allowed'
+                    : ' text-danger-500 cursor-not-allowed'
                 }
                           group flex w-full items-center rounded-lg px-2 py-2 text-sm`}
               >

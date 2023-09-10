@@ -4,10 +4,13 @@ import BaseIcon from '@/components/icons/base/BaseIcon';
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
 import Link from 'next/link';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function SundayServicePage({ params }: any) {
   const { id } = params;
+
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { data, isLoading } = useSWR(`/api/sunday-service/${id}`, fetcher);
 
@@ -27,39 +30,56 @@ export default function SundayServicePage({ params }: any) {
         />
         <p className=" group-hover:text-secondary-800 duration-200">Back</p>
       </Link>
-      <div className="flex flex-row gap-4 p-4 bg-zinc-900">
-        <div
-          className={`w-1 h flex-none rounded-none bg-primary-600
-           `}
-        />
-        <div className="flex flex-col gap-2">
-          <div>
-            <p className="text-white/50 gont-bold text-xs">Name</p>
-            <p className="font-semibold text-xl ">{data.name}</p>
+      <div
+        className={`DETAILS CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
+          isDeleting && 'border-danger-500 animate-pulse'
+        } sm:w-96`}
+      >
+        <h1 className="text-3xl font-bold mr-2">Details Sunday Service</h1>
+        <div className="INFORMATION mt-6">
+          <div className="flex flex-col w-full ">
+            <p className=" antialiased text-base text-secondary-600">Name</p>
+            <p>{data.name}</p>
+            <p className=" antialiased text-base text-secondary-800 -translate-y-1">
+              on the {convertDate(data.date)}
+            </p>
           </div>
-          <div>
-            <p className="text-white/50 gont-bold text-xs">Description</p>
-            <p className="text-white/80 text-lg">{data.description}</p>
-          </div>
-          <div>
-            <p className="text-white/50 gont-bold text-xs">Date</p>
-            <p className="text-white/80 text-lg">{convertDate(data.date)}</p>
+          {data.location && (
+            <div className="flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">
+                Location
+              </p>
+              <p>{data.location}</p>
+            </div>
+          )}
+
+          {data.description && (
+            <div className="flex flex-col w-full ">
+              <p className=" antialiased text-base text-secondary-600">
+                Description
+              </p>
+              <p>{data.description}</p>
+            </div>
+          )}
+        </div>
+        <div className="WORKFLOW mt-6">
+          <h2 className="text-2xl font-semibold antialiased">Workflow</h2>
+          <div className="space-y-2 mt-2">
+            {data.workflow.map((item: any) => {
+              return (
+                <div
+                  key={item.name}
+                  className="flex justify-between border-b border-secondary-500 border-dashed"
+                >
+                  <div>{item.name}</div>
+                  <div>{item.team}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
-      <div>
-        <div className="flex text-lg antialiased font-bold items-center text-white/70 border-b border-white/20 mb-4">
-          Ablauf
-        </div>
-        <div className="space-y-2">
-          {data.workflow.map((item: any) => {
-            return (
-              <div key={item.name} className="flex justify-between">
-                <div>{item.name}</div>
-                <div>{item.team}</div>
-              </div>
-            );
-          })}
+        <div className="flex justify-center mt-6">
+          <div className="w-64 border-b border-secondary-100" />
         </div>
       </div>
     </div>

@@ -16,7 +16,11 @@ export default function SundayServicePage() {
     <div className="w-full mt-0 mb-40">
       <div className="ACTIONS">
         <h1 className="text-3xl font-bold">Actions</h1>
-        <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-4">
+        <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-1">
+          <div className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
+            <h2 className="text-2xl antialiased">Search</h2>
+            <p className="text-secondary-700 antialiased">in Sunday Service</p>
+          </div>
           <Link
             href="/sunday-service/create"
             className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
@@ -24,10 +28,6 @@ export default function SundayServicePage() {
             <h2 className="text-2xl antialiased">Create</h2>
             <p className="text-secondary-700 antialiased">new Sunday Service</p>
           </Link>
-          <div className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
-            <h2 className="text-2xl antialiased">Search</h2>
-            <p className="text-secondary-700 antialiased">in Sunday Service</p>
-          </div>
         </div>
       </div>
       <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">

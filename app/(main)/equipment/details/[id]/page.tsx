@@ -22,11 +22,10 @@ export default function EquipmentPage({ params }: any) {
 
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const {
-    data: equipment,
-    isLoading,
-    isValidating,
-  } = useSWR(`/api/equipment/${id}`, fetcher);
+  const { data: equipment, isLoading } = useSWR(
+    `/api/equipment/${id}`,
+    fetcher
+  );
 
   const handleDelete = async (id: any) => {
     if (!id) {

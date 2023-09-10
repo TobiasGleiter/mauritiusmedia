@@ -20,7 +20,8 @@ export default withAuth(
     }
 
     if (
-      pathname.includes('sunday-service') &&
+      (pathname.includes('/sunday-service/create') ||
+        pathname.includes('/sunday-service/edit')) &&
       !hasRequiredPermissions(request.nextauth.token?.role as string, [
         'technician',
         'admin',
@@ -46,7 +47,7 @@ export const config = {
     '/admin-dashboard/:path*',
     '/equipment/:path*',
     '/api/equipment/:path*', // comment out for postman
-    '/sunday-service/',
+    '/sunday-service/:path*',
     '/auth/new-user',
   ],
 };

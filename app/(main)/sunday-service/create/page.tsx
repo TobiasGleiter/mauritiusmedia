@@ -92,7 +92,7 @@ export default function CreateSundayService() {
   };
 
   return (
-    <div className=" mb-40">
+    <div className="w-fit mb-40">
       <Link
         href="/sunday-service"
         className="BACK flex items-center text-secondary-500 group"

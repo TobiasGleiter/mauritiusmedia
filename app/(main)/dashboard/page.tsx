@@ -5,9 +5,9 @@ import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 
 const nav = [
-  { label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
   { label: 'Equipment', href: '/equipment', icon: 'equipment' },
   { label: 'Sunday Service', href: '/sunday-service', icon: 'sundayservice' },
+  { label: 'Profile', href: '/profile', icon: 'profile' },
 ];
 
 export default async function DashboardPage() {

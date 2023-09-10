@@ -17,7 +17,7 @@ const Sidebar: React.FC<ISidebar> = () => {
   let pathname = usePathname();
 
   return (
-    <nav className="flex-none items-center z-50 min-h-screen xl:w-64 lg:w-64 w-fit text-secondary-600 ">
+    <nav className="flex-none items-center z-10 min-h-screen xl:w-64 lg:w-64 w-fit text-secondary-600 ">
       <div className="flex flex-col h-full gap-y-4 px-3 overflow-y-auto ">
         <Link href="/" className="flex ml-1 mt-5 items-center duration-200">
           <BaseIcon icon="logo" style="w-6 h-6 text-primary-600" />

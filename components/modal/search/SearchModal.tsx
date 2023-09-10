@@ -13,7 +13,7 @@ export interface ISearchModal {
 }
 
 const SearchModal: React.FC<ISearchModal> = ({ data, closeModal, isOpen }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const pathname = usePathname();
 
   const filteredResults = searchTerm
@@ -37,7 +37,7 @@ const SearchModal: React.FC<ISearchModal> = ({ data, closeModal, isOpen }) => {
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed -top-1/2 inset-0 overflow-y-auto">
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -48,7 +48,7 @@ const SearchModal: React.FC<ISearchModal> = ({ data, closeModal, isOpen }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-2 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full z-40 max-w-md transform overflow-hidden rounded-xl bg-white p-2 text-left align-middle transition-all">
                 <div className="flex">
                   <BaseIcon icon="search" style="w-6 h-6 mt-1" />
                   <input
@@ -67,8 +67,9 @@ const SearchModal: React.FC<ISearchModal> = ({ data, closeModal, isOpen }) => {
                           <Link
                             key={item._id}
                             href={`${pathname}/details/${item._id}`}
-                            className="w-full  border-b border-secondary-500 border-dashed"
+                            className="flex flex-row items-center w-full lg:hover:text-primary-500 duration-150 border-b border-secondary-500 border-dashed"
                           >
+                            <BaseIcon icon="placeholder" style="w-6 h-6" />
                             <p className=" antialiased text-xl">{item.name}</p>
                           </Link>
                         );

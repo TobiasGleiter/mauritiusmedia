@@ -12,6 +12,9 @@ const nextConfig = {
 
     SECRET_REVALIDATION_TOKEN: process.env.SECRET_REVALIDATION_TOKEN,
   },
+  images: {
+    domains: ['avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
+  },
 };
 
 module.exports = nextConfig;

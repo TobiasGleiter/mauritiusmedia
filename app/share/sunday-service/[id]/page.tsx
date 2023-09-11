@@ -13,7 +13,7 @@ export default async function WorkflowSundayServicePage({
 
   return (
     <div>
-      Workflow
+      <h1 className="text-3xl font-bold mr-2">Details Sunday Service</h1>
       <Suspense fallback="Loading...">
         <SundayServiceDetail promise={sundayService} />
       </Suspense>

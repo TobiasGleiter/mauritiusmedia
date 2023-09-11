@@ -78,6 +78,14 @@ export default function SundayServicePage({ params }: any) {
             })}
           </div>
         </div>
+        <div className="mt-4">
+          <Link
+            href={`/share/sunday-service/${data._id}`}
+            className="bg-warning-500 p-2"
+          >
+            Share Temporary
+          </Link>
+        </div>
         <div className="flex justify-center mt-6">
           <div className="w-64 border-b border-secondary-100" />
         </div>

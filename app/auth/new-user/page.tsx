@@ -8,8 +8,8 @@ export default async function NewUserPage() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="relative w-full max-w-xs rounded-xl p-2">
-      <div className="flex flex-col items-center bg-gradient-to-r from-neutral-300 to-stone-400 bg-clip-text text-transparent">
+    <div className="relative w-full max-w-xs rounded-xl p-2 bg-white">
+      <div className="flex flex-col items-center text-secondary-800 ">
         <Image
           src="/mauritiusmedia.png"
           width={200}
@@ -28,7 +28,7 @@ export default async function NewUserPage() {
           href="/dashboard"
           className="group hover:text-primary-600 duration-200 flex items-center justify-center"
         >
-          <p>Go to dashboard</p>
+          <p>Explore</p>
           <BaseIcon
             icon="arrowrightup"
             style="ml-1 text-neutral-300 group-hover:text-primary-600"

@@ -6,8 +6,8 @@ import { Suspense } from 'react';
 export default function SignOutPage() {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-10">
-      <div className="relative w-full max-w-xs rounded-xl bg-black p-2">
-        <div className="flex flex-col items-center text-neutral-400">
+      <div className="relative w-full max-w-xs rounded-xl bg-white p-2">
+        <div className="flex flex-col items-center text-secondary-800">
           <Image
             src="/mauritiusmedia.png"
             width={200}

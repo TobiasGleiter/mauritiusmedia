@@ -9,8 +9,8 @@ export default function AuthErrorPage() {
   const error = searchParams.get('error');
 
   return (
-    <div className="relative w-full max-w-xs rounded-xl bg-black">
-      <div className="flex flex-col items-center text-white">
+    <div className="relative w-full max-w-xs rounded-xl bg-white p-2">
+      <div className="flex flex-col items-center text-secondary-800">
         <Image
           src="/mauritiusmedia.png"
           width={200}

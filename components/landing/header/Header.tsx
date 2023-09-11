@@ -41,7 +41,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
           />
         </div>
         <div className="hidden lg:flex lg:gap-x-4 ">
-          <ul className="lg:flex lg:gap-x-4 text-white py-2">
+          <ul className="lg:flex lg:gap-x-4 text-black py-2">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link

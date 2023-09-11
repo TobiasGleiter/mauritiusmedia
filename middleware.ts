@@ -44,10 +44,11 @@ export default withAuth(
 export const config = {
   matcher: [
     '/dashboard/:path*',
-    '/admin-dashboard/:path*',
+    '/api/dashboard/:path*',
     '/equipment/:path*',
     '/api/equipment/:path*', // comment out for postman
     '/sunday-service/:path*',
+    '/api/sunday-service/:path*',
     '/auth/new-user',
   ],
 };

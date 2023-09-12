@@ -101,11 +101,19 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async signIn({ user }) {
-      // ##development remove when open Goalkeepr to the world!
+      const allowedMails = process.env.ALLOWED_USER_EMAIL;
+      const arrayAllowedMails = allowedMails ? allowedMails.split('/#/') : [];
+
       if (process.env.NODE_ENV === 'development') {
-        return true; // Allow sign-in
+        // Check if the user's email is in the list of allowed emails
+        if (user && user.email && arrayAllowedMails.includes(user.email)) {
+          return true; // Allow sign-in
+        } else {
+          return false; // Deny sign-in
+        }
       } else {
-        if (user.email === process.env.ALLOWED_USER_EMAIL) {
+        // Check if the user's email is in the list of allowed emails
+        if (user && user.email && arrayAllowedMails.includes(user.email)) {
           return true; // Allow sign-in
         } else {
           return false; // Deny sign-in

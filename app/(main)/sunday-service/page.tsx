@@ -75,7 +75,7 @@ export default function SundayServicePage() {
                 <Link
                   key={item._id}
                   href={`/sunday-service/details/${item._id}`}
-                  className="flex flex-col h-28 shadow-md border border-secondary-800/10 rounded-2xl px-4 pt-3"
+                  className="flex flex-col shadow-md border border-secondary-800/10 rounded-2xl px-4 pt-3"
                 >
                   <h2 className="text-xl antialiased font-medium">
                     {item.name}

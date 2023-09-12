@@ -1,5 +1,5 @@
+import SundayServiceDetail from '@/components/detail/sundayservice/SundayServiceDetail';
 import getWorkflow from '@/lib/share/sunday-service/getWorkflow';
-import SundayServiceDetail from '@/lib/share/sunday-service/workflow';
 import { Suspense } from 'react';
 
 export interface IProps {

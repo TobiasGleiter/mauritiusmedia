@@ -127,14 +127,14 @@ export default function SundayServicePage({ params }: any) {
           <div className="WORKFLOW mt-6">
             <h2 className="text-2xl font-semibold antialiased">Workflow</h2>
             <div className="space-y-2 mt-2">
-              {data.workflow.map((item: any) => {
+              {data.workflow.map((item: any, index: number) => {
                 return (
                   <div
-                    key={item.name}
-                    className="flex justify-between border-b border-secondary-500 border-dashed"
+                    key={item.name + index}
+                    className="flex lg:flex-row flex-col justify-between border-b border-secondary-500 border-dashed"
                   >
-                    <div>{item.name}</div>
-                    <div>{item.team}</div>
+                    <p>{item.name}</p>
+                    <p className="text-secondary-800">{item.team}</p>
                   </div>
                 );
               })}

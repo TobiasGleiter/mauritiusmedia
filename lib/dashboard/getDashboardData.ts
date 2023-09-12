@@ -9,12 +9,19 @@ export async function getDashboardData() {
   const sundayservice = await Connect('sundayservice');
   const countSundayService = await sundayservice.countDocuments();
 
+  // user
+  const users = await Connect('users');
+  const countUser = await users.countDocuments();
+
   const response = {
     equipment: {
       count: countEquipment,
     },
     sundayservice: {
       count: countSundayService,
+    },
+    users: {
+      count: countUser,
     },
   };
 

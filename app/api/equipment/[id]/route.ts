@@ -13,6 +13,13 @@ export interface IEquipment {
 }
 
 export async function GET(request: Request, { params }: IEquipment) {
+  const session = await getServerSession(authOptions);
+  const role = session?.user ? session.user.role : 'guest';
+
+  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
   const { id } = params;
 
   // validation

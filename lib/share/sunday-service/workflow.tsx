@@ -4,7 +4,7 @@ export interface IEquipmentDetail {
 
 const SundayServiceDetail = async ({ promise }: IEquipmentDetail) => {
   const data = await promise;
-  console.log(data);
+
   return (
     <div className="WORKFLOW mt-6">
       <h2 className="text-2xl font-semibold antialiased">Workflow</h2>

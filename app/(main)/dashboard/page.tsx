@@ -16,7 +16,7 @@ const requiredPermissions = ['admin', 'technician', 'dev'];
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
-  const { equipment, sundayservice } = await getDashboardData();
+  const { equipment, sundayservice, users } = await getDashboardData();
 
   return (
     <div className="w-full mt-0 mb-40">
@@ -34,13 +34,22 @@ export default async function DashboardPage() {
                   <p className="font-bold text-3xl ">{equipment.count}</p>
                 </div>
               </div>
-
               <div className="flex bg-white h-[100px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white">
                 <div className="flex flex-col items-center">
                   <p className="text-secondary-800 text-base">Sunday Service</p>
                   <p className="font-bold text-3xl">{sundayservice.count}</p>
                 </div>
               </div>
+              {hasRequiredPermissions(session?.user.role as string, [
+                'admin',
+              ]) && (
+                <div className="flex bg-white h-[100px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white">
+                  <div className="flex flex-col items-center">
+                    <p className="text-secondary-800 text-base">Users</p>
+                    <p className="font-bold text-3xl">{users.count}</p>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <div className="flex h-[100px] justify-left items-center">

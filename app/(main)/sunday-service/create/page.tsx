@@ -3,6 +3,7 @@
 import BaseIcon from '@/components/icons/base/BaseIcon';
 import { createSundayService } from '@/helpers/sundayservice/api';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
@@ -27,6 +28,7 @@ export default function CreateSundayService() {
     date: '',
     workflow: [],
   });
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -71,11 +73,13 @@ export default function CreateSundayService() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(item); // Replace with API call
+    //console.log(item); // Replace with API call
 
     const body = JSON.stringify(item);
 
     await createSundayService(body);
+
+    router.push('/sunday-service');
   };
 
   const handleDragEnd = (result: any) => {
@@ -244,7 +248,7 @@ export default function CreateSundayService() {
             type="submit"
             className=" flex bg-primary-500 text-black justify-center rounded-full hover:bg-primary-600 duration-200"
           >
-            Create Item
+            Create
           </button>
         </form>
       </div>

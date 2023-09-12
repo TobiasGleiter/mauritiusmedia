@@ -110,7 +110,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Panel className="fixed inset-y-0 left-0 z-30 w-full overflow-y-auto p-6 sm:max-w-sm text-white bg-black">
+            <Dialog.Panel className="fixed inset-y-0 left-0 z-30 w-full overflow-y-auto p-6 sm:max-w-sm text-secondary-800 bg-white">
               <div className="flex items-center justify-end">
                 <button
                   type="button"
@@ -129,7 +129,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
                         href={item.href}
                         as={item.as}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-base font-semibold"
+                        className="block px-3 py-2 text-base font-base antialiased"
                       >
                         {item.name}
                       </Link>
@@ -141,7 +141,7 @@ const Header: React.FC<IHeader> = ({ session }) => {
                           href={item.href}
                           as={item.as}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block px-3 py-2 text-base font-semibold"
+                          className="block px-3 py-2 text-base font-base antialiased"
                         >
                           {item.name}
                         </Link>

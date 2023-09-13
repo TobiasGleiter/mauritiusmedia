@@ -24,7 +24,6 @@ export default withAuth(
       (pathname.includes('/sunday-service/create') ||
         pathname.includes('/sunday-service/edit')) &&
       !hasRequiredPermissions(request.nextauth.token?.role as string, [
-        'guest',
         'technician',
         'admin',
       ])

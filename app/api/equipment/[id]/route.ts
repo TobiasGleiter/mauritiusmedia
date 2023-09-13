@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: IEquipment) {
   const session = await getServerSession(authOptions);
   const role = session?.user ? session.user.role : 'guest';
 
-  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+  if (!hasRequiredPermissions(role, ['admin', 'technician', 'dev'])) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
@@ -45,7 +45,7 @@ export async function PUT(request: Request, { params }: IEquipment) {
   const session = await getServerSession(authOptions);
   const role = session?.user ? session.user.role : 'guest';
 
-  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+  if (!hasRequiredPermissions(role, ['admin', 'technician', 'dev'])) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
@@ -86,7 +86,7 @@ export async function DELETE(request: Request, { params }: IEquipment) {
   const session = await getServerSession(authOptions);
   const role = session?.user ? session.user.role : 'guest';
 
-  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+  if (!hasRequiredPermissions(role, ['admin', 'technician', 'dev'])) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
@@ -114,7 +114,7 @@ export async function PATCH(request: Request, { params }: IEquipment) {
   const session = await getServerSession(authOptions);
   const role = session?.user ? session.user.role : 'guest';
 
-  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+  if (!hasRequiredPermissions(role, ['admin', 'technician', 'dev'])) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 

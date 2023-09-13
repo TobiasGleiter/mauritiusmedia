@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   const role = session?.user ? session.user.role : 'guest';
 
-  if (!hasRequiredPermissions(role, ['admin', 'technican', 'dev'])) {
+  if (!hasRequiredPermissions(role, ['admin', 'technician', 'dev'])) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 

@@ -6,14 +6,21 @@ import BaseModal from '@/components/modal/base/BaseModal';
 import { fetcher } from '@/helpers/fetcher';
 import { deleteSundayService } from '@/helpers/sundayservice/api';
 import { convertDate } from '@/helpers/sundayservice/date';
+import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
 
+const requiredPermissions = ['admin'];
+
 export default function SundayServicePage({ params }: any) {
   const { id } = params;
   const router = useRouter();
+
+  const { data: session } = useSession();
+  const role = useRole(session);
 
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -96,7 +103,10 @@ export default function SundayServicePage({ params }: any) {
           <div className="flex items-center">
             {' '}
             <h1 className="text-3xl font-bold mr-2">Details Sunday Service</h1>
-            <ButtonListbox title="" align="right-0" items={items} />
+            {hasRequiredPermissionsClient(
+              role as string,
+              requiredPermissions
+            ) && <ButtonListbox title="" align="right-0" items={items} />}
           </div>
           <div className="INFORMATION mt-6">
             <div className="flex flex-col w-full ">

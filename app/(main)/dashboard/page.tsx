@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
   const { equipment, sundayservice, users } = await getDashboardData();
-
+  console.log(session?.user.role);
   const nav = [
     {
       label: 'Equipment',
@@ -100,7 +100,9 @@ export default async function DashboardPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex bg-white h-[66px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white hover:border-primary-500"
+                className={`flex ${
+                  !item.permission && 'hidden'
+                } bg-white h-[66px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white hover:border-primary-500`}
               >
                 <div className="flex items-center">
                   <BaseIcon icon={item.icon} style="w-6 h-6" />

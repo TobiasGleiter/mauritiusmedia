@@ -40,7 +40,7 @@ const labelsLocation = [
   'Pfarrscheuer',
 ];
 
-const requiredPermissions = ['admin', 'technician', 'dev'];
+const requiredPermissions = ['admin', 'technician'];
 
 export default function EquipmentPage() {
   const { data: session } = useSession();

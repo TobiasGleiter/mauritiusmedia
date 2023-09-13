@@ -2,6 +2,8 @@
 
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
+import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
+import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -20,7 +22,11 @@ const LazySearchModal = dynamic(
   }
 );
 
+const requiredPermissions = ['admin'];
+
 export default function SundayServicePage() {
+  const { data: session } = useSession();
+  const role = useRole(session);
   //const [searchTerm, setSearchTerm] = useState('');
   const { data, isLoading } = useSWR('/api/sunday-service', fetcher);
 
@@ -53,15 +59,20 @@ export default function SundayServicePage() {
                 in Sunday Service
               </p>
             </button>
-            <Link
-              href="/sunday-service/create"
-              className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
-            >
-              <h2 className="text-2xl antialiased">Create</h2>
-              <p className="text-secondary-700 antialiased">
-                new Sunday Service
-              </p>
-            </Link>
+            {hasRequiredPermissionsClient(
+              role as string,
+              requiredPermissions
+            ) && (
+              <Link
+                href="/sunday-service/create"
+                className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
+              >
+                <h2 className="text-2xl antialiased">Create</h2>
+                <p className="text-secondary-700 antialiased">
+                  new Sunday Service
+                </p>
+              </Link>
+            )}
           </div>
         </div>
         <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">

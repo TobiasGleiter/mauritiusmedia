@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
   const { equipment, sundayservice, users } = await getDashboardData();
-  console.log(session?.user.role);
+
   const nav = [
     {
       label: 'Equipment',

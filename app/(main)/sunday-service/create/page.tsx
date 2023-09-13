@@ -108,7 +108,7 @@ export default function CreateSundayService() {
         <p className=" group-hover:text-secondary-800 duration-200">Back</p>
       </Link>
       <div className="CREATE CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white ">
-        <h1 className="text-3xl font-bold">Create new Sunday-Service</h1>
+        <h1 className="text-3xl font-bold">Create new Sunday Service</h1>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-2 w-full mt-6"

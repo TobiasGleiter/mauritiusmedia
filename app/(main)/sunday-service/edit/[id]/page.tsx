@@ -62,7 +62,7 @@ export default function SundayServicePage({ params }: any) {
   };
 
   return (
-    <div className="w-fit mb-40">
+    <div className="w-full mb-40">
       <Link
         href="/sunday-service"
         className="BACK flex items-center text-secondary-500 group"
@@ -78,7 +78,7 @@ export default function SundayServicePage({ params }: any) {
           isUpdateing && 'border-warning-500 animate-pulse'
         }`}
       >
-        <h1 className="text-3xl font-bold">Create new Sunday-Service</h1>
+        <h1 className="text-3xl font-bold">Edit Sunday Service</h1>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-2 w-full mt-6"

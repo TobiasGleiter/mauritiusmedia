@@ -27,7 +27,7 @@ const requiredPermissions = ['admin'];
 export default function SundayServicePage() {
   const { data: session } = useSession();
   const role = useRole(session);
-  //const [searchTerm, setSearchTerm] = useState('');
+
   const { data, isLoading } = useSWR('/api/sunday-service', fetcher);
 
   let [isOpen, setIsOpen] = useState(false);
@@ -41,7 +41,43 @@ export default function SundayServicePage() {
   }
 
   if (isLoading) {
-    return <></>;
+    return (
+      <div className="w-full mt-0 mb-40">
+        <div className="ACTIONS">
+          <h1 className="text-3xl font-bold">Actions</h1>
+          <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-1">
+            <div className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
+              <h2 className="text-2xl antialiased">Search</h2>
+              <p className="text-secondary-700 antialiased">
+                in Sunday Service
+              </p>
+            </div>
+            {hasRequiredPermissionsClient(
+              role as string,
+              requiredPermissions
+            ) && (
+              <Link
+                href="/equipment/create"
+                className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
+              >
+                <h2 className="text-2xl antialiased">Create</h2>
+                <p className="text-secondary-700 antialiased">
+                  new Sunday Service
+                </p>
+              </Link>
+            )}
+          </div>
+        </div>
+        <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+          <h1 className="text-3xl font-bold">Sunday Service</h1>
+          <div className="CARDS flex flex-col mt-4 gap-2">
+            <div className="shadow-md h-28 border bg-secondary-100/40 border-secondary-800/10 rounded-2xl animate-pulse" />
+            <div className="shadow-md h-28 border bg-secondary-100/60 border-secondary-800/10 rounded-2xl animate-pulse" />
+            <div className="shadow-md h-28 border bg-secondary-100/20 border-secondary-800/10 rounded-2xl animate-pulse" />
+          </div>
+        </div>
+      </div>
+    );
   }
   return (
     <>

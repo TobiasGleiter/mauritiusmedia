@@ -7,26 +7,35 @@ export default withAuth(
   function middleware(request) {
     const { pathname } = request.nextUrl;
 
+    // Equipment
     if (
       (pathname.includes('/equipment/create') ||
         pathname.includes('/equipment/edit')) &&
       !hasRequiredPermissions(request.nextauth.token?.role as string, [
         'technician',
         'admin',
-        'dev',
       ])
     ) {
       return NextResponse.redirect(new URL('/equipment', request.url));
     }
 
+    // Sunday-Service
     if (
       (pathname.includes('/sunday-service/create') ||
         pathname.includes('/sunday-service/edit')) &&
       !hasRequiredPermissions(request.nextauth.token?.role as string, [
+        'guest',
         'technician',
         'admin',
-        'dev',
       ])
+    ) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
+    }
+
+    // Users
+    if (
+      pathname.includes('/users') &&
+      !hasRequiredPermissions(request.nextauth.token?.role as string, ['admin'])
     ) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }
@@ -49,6 +58,7 @@ export const config = {
     '/api/equipment/:path*', // comment out for postman
     '/sunday-service/:path*',
     '/api/sunday-service/:path*',
+    '/users',
     '/auth/new-user',
   ],
 };

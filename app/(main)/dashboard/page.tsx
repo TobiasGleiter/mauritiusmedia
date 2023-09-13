@@ -5,18 +5,52 @@ import { hasRequiredPermissions } from '@/lib/rbac/base';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 
-const nav = [
-  { label: 'Equipment', href: '/equipment', icon: 'equipment' },
-  { label: 'Sunday Service', href: '/sunday-service', icon: 'sundayservice' },
-  { label: 'Profile', href: '/profile', icon: 'profile' },
-];
-
 const requiredPermissions = ['admin', 'technician', 'dev'];
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
   const { equipment, sundayservice, users } = await getDashboardData();
+
+  const nav = [
+    {
+      label: 'Equipment',
+      href: '/equipment',
+      icon: 'equipment',
+      permission: hasRequiredPermissions(session?.user.role as string, [
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Sunday Service',
+      href: '/sunday-service',
+      icon: 'sundayservice',
+      permission: hasRequiredPermissions(session?.user.role as string, [
+        'guest',
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Profile',
+      href: '/profile',
+      icon: 'profile',
+      permission: hasRequiredPermissions(session?.user.role as string, [
+        'guest',
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Users',
+      href: '/users',
+      icon: 'users',
+      permission: hasRequiredPermissions(session?.user.role as string, [
+        'admin',
+      ]),
+    },
+  ];
 
   return (
     <div className="w-full mt-0 mb-40">

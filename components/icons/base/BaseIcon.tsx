@@ -5,9 +5,11 @@ import {
   BiCaretDown,
   BiCaretRight,
   BiCheckbox,
+  BiChevronRight,
   BiChurch,
   BiDotsHorizontalRounded,
   BiGridHorizontal,
+  BiGroup,
   BiListPlus,
   BiListUl,
   BiLogIn,
@@ -38,11 +40,14 @@ const ICONS_MAP: any = {
 
   search: <BiSearch />,
 
+  chevronright: <BiChevronRight />,
+
   logo: <BiChurch />,
   dashboard: <BiTachometer />,
   equipment: <BiListUl />,
   newequipment: <BiListPlus />,
   sundayservice: <BiBible />,
+  users: <BiGroup />,
 
   profile: <BiUser />,
 

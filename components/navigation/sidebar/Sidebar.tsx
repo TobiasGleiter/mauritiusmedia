@@ -1,5 +1,7 @@
 'use client';
 
+import { hasRequiredPermissionsClient } from '@/lib/rbac/base';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -7,14 +9,49 @@ import BaseIcon from '../../icons/base/BaseIcon';
 
 export interface ISidebar {}
 
-const nav = [
-  { label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
-  { label: 'Equipment', href: '/equipment', icon: 'equipment' },
-  { label: 'Sunday Service', href: '/sunday-service', icon: 'sundayservice' },
-];
-
 const Sidebar: React.FC<ISidebar> = () => {
   let pathname = usePathname();
+  const { data: session } = useSession();
+
+  const nav = [
+    {
+      label: 'Dashboard',
+      href: '/dashboard',
+      icon: 'dashboard',
+      permission: hasRequiredPermissionsClient(session?.user.role as string, [
+        'guest',
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Equipment',
+      href: '/equipment',
+      icon: 'equipment',
+      permission: hasRequiredPermissionsClient(session?.user.role as string, [
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Sunday Service',
+      href: '/sunday-service',
+      icon: 'sundayservice',
+      permission: hasRequiredPermissionsClient(session?.user.role as string, [
+        'guest',
+        'technician',
+        'admin',
+      ]),
+    },
+    {
+      label: 'Users',
+      href: '/users',
+      icon: 'users',
+      permission: hasRequiredPermissionsClient(session?.user.role as string, [
+        'admin',
+      ]),
+    },
+  ];
 
   return (
     <nav className="flex-none items-center z-10 min-h-screen xl:w-64 lg:w-64 w-fit text-secondary-600 ">
@@ -33,7 +70,10 @@ const Sidebar: React.FC<ISidebar> = () => {
           <p className="font-bold text-xs hidden lg:block">MENU</p>
           <ul className=" space-y-2 pt-1">
             {nav.map((item: any) => (
-              <li key={item.label}>
+              <li
+                key={item.label}
+                className={` ${item.permission ? 'block' : 'hidden'}`}
+              >
                 <Link
                   href={item.href}
                   className={`flex items-center p-1  rounded-lg duration-200 hover:text-primary-600 ${

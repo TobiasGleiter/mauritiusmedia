@@ -11,7 +11,7 @@ export default async function LandingLayout({
   return (
     <div className="relative ">
       <Header session={session} />
-      <div className="max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto">
+      <div className="max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto mb-40">
         {children}
       </div>
     </div>

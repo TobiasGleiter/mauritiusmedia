@@ -10,7 +10,11 @@ export interface IHeader {
   session: any;
 }
 
-const navigation = [{ name: 'Home', href: '/', as: '/' }];
+const navigation = [
+  { name: 'Home', href: '/', as: '/' },
+  { name: 'About', href: '/about', as: '/about' },
+  { name: 'Gallery', href: '/gallery', as: '/gallery' },
+];
 const intern = [
   { name: 'Dashboard', href: '/dashboard', as: '/dashboard' },
   { name: 'Equipment', href: '/equipment', as: '/equipment' },

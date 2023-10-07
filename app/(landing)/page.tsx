@@ -14,12 +14,21 @@ export default async function Home() {
               more.
             </p>
           </div>
-          <Link
-            href="/dashboard"
-            className="rounded-full w-fit mt-4 px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
-          >
-            Explore
-          </Link>
+          <h2 className="mt-4 text-lg font-base">Explore...</h2>
+          <div className="flex mt-2 gap-2">
+            <Link
+              href="/about"
+              className="rounded-full w-fit  px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
+            >
+              About
+            </Link>
+            <Link
+              href="/gallery"
+              className="rounded-full w-fit  px-4 py-2 shadow-lg bg-white text-black lg:hover:bg-primary-600 lg:hover:text-white duration-300"
+            >
+              Gallery
+            </Link>
+          </div>
         </div>
       </section>
     </main>

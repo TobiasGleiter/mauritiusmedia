@@ -24,7 +24,7 @@ export default async function About() {
             <span className="text-primary-500">Gallery</span>
           </h1>
           {/** IMAGE GRID */}
-          <div className="grid grid-cols-2">
+          <div className="grid md:grid-cols-2 xs:grid-cols-1">
             {images.map((image: string, index: number) => {
               return (
                 <div className="aspect-square" key={index}>

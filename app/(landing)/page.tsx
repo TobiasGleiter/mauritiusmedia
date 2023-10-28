@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default async function Home() {
   return (
     <main>
-      <section className="grid grid-cols-4 gap-1 md:gap-2 max-w-2xl mx-4 pt-20 lg:mx-auto text-black mt-20">
+      <section className="grid grid-cols-4 gap-1 md:gap-2 max-w-2xl mx-4 md:pt-20 lg:mx-auto text-black mt-20">
         <div className="col-span-4 md:col-span-3 z-10 bg-white/100 py-8 px-16 rounded-xl duration-300">
           <div>
             <h1 className=" antialiased text-3xl font-bold mb-2 text-secondary-500">

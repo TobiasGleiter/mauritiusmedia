@@ -1,18 +1,18 @@
 import Image from 'next/image';
 
 const images = [
-  'image-0.jpg',
-  'image-1.jpg',
-  'image-2.jpg',
-  'image-3.jpg',
-  'image-4.jpg',
-  'image-5.jpg',
-  'image-6.jpg',
-  'image-7.jpg',
-  'image-8.jpg',
-  'image-9.jpg',
-  'image-10.jpg',
-  'image-11.jpg',
+  'image-0.jpeg',
+  'image-1.jpeg',
+  'image-2.jpeg',
+  'image-3.jpeg',
+  'image-4.jpeg',
+  'image-5.jpeg',
+  'image-6.jpeg',
+  'image-7.jpeg',
+  'image-8.jpeg',
+  'image-9.jpeg',
+  'image-10.jpeg',
+  'image-11.jpeg',
 ];
 
 export default async function About() {
@@ -31,8 +31,8 @@ export default async function About() {
                   <Image
                     alt="Image"
                     src={`/images/${image}`}
-                    width={200} // Adjust the width and height to your desired size
-                    height={200} // Make them both equal to create a square
+                    width={500} // Adjust the width and height to your desired size
+                    height={500} // Make them both equal to create a square
                     className="object-cover w-full h-full"
                   />
                 </div>

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default async function About() {
   return (
     <main>
@@ -6,6 +8,13 @@ export default async function About() {
           <h1 className=" antialiased text-3xl font-bold mb-2 text-secondary-500">
             <span className="text-primary-500">About </span>Us
           </h1>
+          <Image
+            alt="Us"
+            src="/us.jpg"
+            width={500} // Adjust the width and height to your desired size
+            height={500} // Make them both equal to create a square
+            className="object-cover w-full h-full"
+          />
           <p>
             Zu Beginn der Coronapandemie im März 2020 wurden einige Jugendliche
             aus unserer Gemeinde damit beauftragt, unsere Gemeindegottesdienste

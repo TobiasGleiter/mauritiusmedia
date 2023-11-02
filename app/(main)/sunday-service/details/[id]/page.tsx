@@ -1,14 +1,13 @@
 'use client';
 
-import BaseIcon from '@/components/icons/base/BaseIcon';
 import ButtonListbox from '@/components/listbox/button/ButtonListbox';
 import BaseModal from '@/components/modal/base/BaseModal';
+import PageNavigation from '@/components/navigation/page/PageNavigation';
 import { fetcher } from '@/helpers/fetcher';
 import { deleteSundayService } from '@/helpers/sundayservice/api';
 import { convertDate } from '@/helpers/sundayservice/date';
 import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
@@ -99,16 +98,7 @@ export default function SundayServicePage({ params }: any) {
         closeModal={closeModal}
         acceptModal={handleDelete}
       />
-      <Link
-        href="/sunday-service"
-        className="BACK flex items-center text-secondary-500 group"
-      >
-        <BaseIcon
-          icon="arrowback"
-          style="group-hover:text-secondary-800 duration-200"
-        />
-        <p className=" group-hover:text-secondary-800 duration-200">Back</p>
-      </Link>
+      <PageNavigation link="/sunday-service" />
       <div
         className={`DETAILS CARD flex flex-col mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
           isDeleting && 'border-danger-500 animate-pulse'

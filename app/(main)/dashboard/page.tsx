@@ -74,20 +74,18 @@ export default async function DashboardPage() {
                   <p className="font-bold text-3xl">{sundayservice.count}</p>
                 </div>
               </div>
-              {hasRequiredPermissions(session?.user.role as string, [
-                'admin',
-              ]) && (
-                <div className="flex bg-white h-[100px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white">
-                  <div className="flex flex-col items-center">
-                    <p className="text-secondary-800 text-base">Users</p>
-                    <p className="font-bold text-3xl">{users.count}</p>
-                  </div>
-                </div>
-              )}
             </>
           ) : (
             <div className="flex h-[100px] justify-left items-center">
               <p className="flex text-secondary-800">Nothing for you, sorry.</p>
+            </div>
+          )}
+          {hasRequiredPermissions(session?.user.role as string, ['admin']) && (
+            <div className="flex bg-white h-[100px] justify-center items-center py-1 px-4 rounded-2xl shadow-md w-full border border-white">
+              <div className="flex flex-col items-center">
+                <p className="text-secondary-800 text-base">Users</p>
+                <p className="font-bold text-3xl">{users.count}</p>
+              </div>
             </div>
           )}
         </div>

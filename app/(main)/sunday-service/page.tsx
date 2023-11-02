@@ -111,7 +111,7 @@ export default function SundayServicePage() {
             )}
           </div>
         </div>
-        <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+        <div className="SUNDAY-SERVICE mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
           <h1 className="text-3xl font-bold">Sunday Service</h1>
           <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
             <div className="flex items-center align-middle"></div>

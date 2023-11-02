@@ -62,7 +62,7 @@ export default function SundayServicePage({ params }: any) {
   };
 
   return (
-    <div className="w-full mb-40">
+    <div className="flex flex-col w-full mb-40">
       <Link
         href="/sunday-service"
         className="BACK flex items-center text-secondary-500 group"
@@ -74,7 +74,7 @@ export default function SundayServicePage({ params }: any) {
         <p className=" group-hover:text-secondary-800 duration-200">Back</p>
       </Link>
       <div
-        className={`CREATE CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
+        className={`CREATE CARD flex flex-col mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
           isUpdateing && 'border-warning-500 animate-pulse'
         }`}
       >

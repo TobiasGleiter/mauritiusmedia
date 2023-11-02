@@ -36,7 +36,7 @@ export default async function Home() {
           src="/logo-new.png"
           width={500} // Adjust the width and height to your desired size
           height={500} // Make them both equal to create a square
-          className="col-span-4 md:col-span-1 object-cover w-full h-full lg:-rotate-3 hover:-rotate-0 hover:translate-x-2 duration-300 rounded-xl z-10 lg:-translate-x-6 -translate-x-4 lg:translate-y-4 -translate-y-6 shadow-md"
+          className="col-span-4 md:col-span-1 object-cover w-full h-full lg:-rotate-3 hover:-rotate-0 md:hover:translate-x-2 duration-300 rounded-xl z-10 lg:-translate-x-6 md:-translate-x-4 lg:translate-y-4 md:-translate-y-6 shadow-md"
         />
         <div className="col-span-4 bg-primary-500 py-8 px-16 rounded-xl duration-300">
           <h2 className="mb-4 font-base text-xl">
@@ -55,7 +55,7 @@ export default async function Home() {
           src="/us.jpg"
           width={500} // Adjust the width and height to your desired size
           height={500} // Make them both equal to create a square
-          className="col-span-4 lg:col-span-2 object-cover w-full h-full lg:rotate-3 hover:-rotate-0 hover:-translate-x-2 duration-300 rounded-xl z-10 lg:translate-x-6 translate-x-4 lg:translate-y-4 -translate-y-6 shadow-md"
+          className="col-span-4 lg:col-span-2 object-cover w-full h-full lg:rotate-3 hover:-rotate-0 md:hover:-translate-x-2 duration-300 rounded-xl z-10 lg:translate-x-6 md:translate-x-4 lg:translate-y-4 md:-translate-y-6 shadow-md"
         />
         <Link
           href="https://www.mauritiuskirche.de"

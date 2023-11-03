@@ -1,7 +1,8 @@
 import { IEditEquipmentForm } from './EditEquipmentForm';
 
 const base: IEditEquipmentForm = {
-  sampleTextProp: 'Hello world!',
+  id: 'string',
+  searchParams: 'any',
 };
 
 export const mockEditEquipmentFormProps = {

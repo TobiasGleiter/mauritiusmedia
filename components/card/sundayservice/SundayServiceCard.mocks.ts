@@ -1,7 +1,8 @@
 import { ISundayServiceCard } from './SundayServiceCard';
 
 const base: ISundayServiceCard = {
-  sampleTextProp: 'Hello world!',
+  data: {},
+  role: 'guest',
 };
 
 export const mockSundayServiceCardProps = {

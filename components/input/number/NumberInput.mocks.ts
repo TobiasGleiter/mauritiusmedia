@@ -4,7 +4,7 @@ const base: INumberInput = {
   id: 'id',
   name: 'name',
   label: 'label',
-  value: 'value',
+  value: 12,
   setValue: '',
   min: 0,
   max: 100,

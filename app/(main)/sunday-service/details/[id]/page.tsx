@@ -49,6 +49,8 @@ export default function SundayServicePage({ params }: any) {
     router.push('/sunday-service');
   };
 
+  // create token and token mapping in database
+
   const items = [
     {
       action: () => router.push(`/sunday-service/edit/${id}`),

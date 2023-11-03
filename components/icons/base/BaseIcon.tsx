@@ -4,6 +4,7 @@ import {
   BiBible,
   BiCaretDown,
   BiCaretRight,
+  BiCheckCircle,
   BiCheckbox,
   BiChevronRight,
   BiChurch,
@@ -41,6 +42,8 @@ const ICONS_MAP: any = {
   search: <BiSearch />,
 
   chevronright: <BiChevronRight />,
+
+  check: <BiCheckCircle />,
 
   logo: <BiChurch />,
   dashboard: <BiTachometer />,

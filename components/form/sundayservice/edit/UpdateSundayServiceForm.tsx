@@ -12,14 +12,6 @@ interface WorkflowStep {
   team: string;
 }
 
-interface Item {
-  name: string;
-  description: string;
-  location: string;
-  date: string;
-  workflow: WorkflowStep[];
-}
-
 export interface IUpdateSundayServiceForm {
   data: any;
 }
@@ -27,13 +19,13 @@ export interface IUpdateSundayServiceForm {
 const UpdateSundayServiceForm: React.FC<IUpdateSundayServiceForm> = ({
   data,
 }) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState('');
-  const [location, setLocation] = useState('');
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [date, setDate] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
   const [workflow, setWorkflow] = useState<WorkflowStep[]>([]);
 
-  const [isUpdateing, setIsUpdateing] = useState(false);
+  const [isUpdateing, setIsUpdateing] = useState<boolean>(false);
   const [isError, setIsError] = useState({ status: false, message: '' });
 
   // Use useEffect to update the description when equipment data changes
@@ -102,6 +94,11 @@ const UpdateSundayServiceForm: React.FC<IUpdateSundayServiceForm> = ({
       </div>
       <BaseDivider />
       <SubmitButton label="Update" primary />
+      <div>
+        {isError.status && (
+          <p className="text-danger-500 font-semibold">{isError.message}</p>
+        )}
+      </div>
     </form>
   );
 };

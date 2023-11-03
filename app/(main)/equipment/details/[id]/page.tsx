@@ -1,13 +1,11 @@
 'use client';
 
-import BaseIcon from '@/components/icons/base/BaseIcon';
 import ButtonListbox from '@/components/listbox/button/ButtonListbox';
 import BaseModal from '@/components/modal/base/BaseModal';
 import { deleteEquipment } from '@/helpers/equipment/api';
 import { fetcher } from '@/helpers/fetcher';
 import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
@@ -99,16 +97,6 @@ export default function EquipmentPage({ params }: any) {
         acceptModal={handleDelete}
       />
       <div className="w-fit">
-        <Link
-          href="/equipment"
-          className="BACK flex items-center text-secondary-500 group"
-        >
-          <BaseIcon
-            icon="arrowback"
-            style="group-hover:text-secondary-800 duration-200"
-          />
-          <p className=" group-hover:text-secondary-800 duration-200">Back</p>
-        </Link>
         <div
           className={`DETAILS CARD mt-6 py-4 px-4 rounded-2xl shadow-md bg-white border ${
             isDeleting && 'border-danger-500 animate-pulse'

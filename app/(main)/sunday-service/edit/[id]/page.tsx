@@ -1,6 +1,6 @@
 'use client';
 
-import UpdateSundayServiceForm from '@/components/form/sundayservice/update/UpdateSundayServiceForm';
+import UpdateSundayServiceForm from '@/components/form/sundayservice/edit/UpdateSundayServiceForm';
 import PageNavigation from '@/components/navigation/page/PageNavigation';
 import { fetcher } from '@/helpers/fetcher';
 import useSWR from 'swr';

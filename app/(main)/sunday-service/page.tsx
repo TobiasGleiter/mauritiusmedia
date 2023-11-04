@@ -1,34 +1,20 @@
 'use client';
 
+import ActionsSundayService from '@/components/feature/sundayservice/actions/ActionsSundayService';
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
 import { SortEquipment } from '@/helpers/sundayservice/filter';
-import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
-import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 
-const LazySearchModal = dynamic(
-  () => import('./../../../components/modal/search/SearchModal'),
-  {
-    loading: () => (
-      <div className="fixed -top-1/2 inset-0 overflow-y-auto z-40">
-        <div className="flex min-h-full items-center justify-center p-4 text-center">
-          <div className="bg-white w-full rounded-xl h-[48]" />
-        </div>
-      </div>
-    ),
-  }
-);
-
-const requiredPermissions = ['admin'];
+/***
+ *  This component is responsible for displaying a list of (sorted) Sunday services
+ *  - Besides that, it is also responsible for finding a sunday service
+ */
 
 export default function SundayServicePage() {
-  const { data: session } = useSession();
-  const role = useRole(session);
-
   const { data, isLoading } = useSWR('/api/sunday-service', fetcher);
   const filteredData = SortEquipment(data);
 
@@ -43,43 +29,7 @@ export default function SundayServicePage() {
   }
 
   if (isLoading) {
-    return (
-      <div className="w-full mt-0 mb-40">
-        <div className="ACTIONS">
-          <h1 className="text-3xl font-bold">Actions</h1>
-          <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-1">
-            <div className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
-              <h2 className="text-2xl antialiased">Search</h2>
-              <p className="text-secondary-700 antialiased">
-                in Sunday Service
-              </p>
-            </div>
-            {hasRequiredPermissionsClient(
-              role as string,
-              requiredPermissions
-            ) && (
-              <Link
-                href="/equipment/create"
-                className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
-              >
-                <h2 className="text-2xl antialiased">Create</h2>
-                <p className="text-secondary-700 antialiased">
-                  new Sunday Service
-                </p>
-              </Link>
-            )}
-          </div>
-        </div>
-        <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
-          <h1 className="text-3xl font-bold">Sunday Service</h1>
-          <div className="CARDS flex flex-col mt-4 gap-2">
-            <div className="shadow-md h-28 border bg-secondary-100/40 border-secondary-800/10 rounded-2xl animate-pulse" />
-            <div className="shadow-md h-28 border bg-secondary-100/60 border-secondary-800/10 rounded-2xl animate-pulse" />
-            <div className="shadow-md h-28 border bg-secondary-100/20 border-secondary-800/10 rounded-2xl animate-pulse" />
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
   return (
     <>
@@ -89,34 +39,7 @@ export default function SundayServicePage() {
         isOpen={isOpen}
       />
       <div className="w-full mt-0 mb-40">
-        <div className="ACTIONS">
-          <h1 className="text-3xl font-bold">Actions</h1>
-          <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-1">
-            <button
-              onClick={openModal}
-              className="bg-white text-left py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
-            >
-              <h2 className="text-2xl antialiased">Search</h2>
-              <p className="text-secondary-700 antialiased">
-                in Sunday Service
-              </p>
-            </button>
-            {hasRequiredPermissionsClient(
-              role as string,
-              requiredPermissions
-            ) && (
-              <Link
-                href="/sunday-service/create"
-                className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500"
-              >
-                <h2 className="text-2xl antialiased">Create</h2>
-                <p className="text-secondary-700 antialiased">
-                  new Sunday Service
-                </p>
-              </Link>
-            )}
-          </div>
-        </div>
+        <ActionsSundayService openModal={openModal} />
         <div className="SUNDAY-SERVICE mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
           <h1 className="text-3xl font-bold">Sunday Service</h1>
           <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
@@ -148,3 +71,42 @@ export default function SundayServicePage() {
     </>
   );
 }
+
+// Lazy search modal
+const LazySearchModal = dynamic(
+  () => import('./../../../components/modal/search/SearchModal'),
+  {
+    loading: () => (
+      <div className="fixed -top-1/2 inset-0 overflow-y-auto z-40">
+        <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="bg-white w-full rounded-xl h-[48]" />
+        </div>
+      </div>
+    ),
+  }
+);
+
+// local loading skeleton
+const LoadingSkeleton = () => {
+  return (
+    <div className="w-full mt-0 mb-40">
+      <div className="ACTIONS">
+        <h1 className="text-3xl font-bold">Actions</h1>
+        <div className="flex lg:flex-row md:flex-row flex-col mt-2 gap-1">
+          <div className="bg-white py-1 px-4 rounded-2xl shadow-md lg:w-64 md:w-64 w-full border border-white hover:border-primary-500">
+            <h2 className="text-2xl antialiased">Search</h2>
+            <p className="text-secondary-700 antialiased">in Sunday Service</p>
+          </div>
+        </div>
+      </div>
+      <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+        <h1 className="text-3xl font-bold">Sunday Service</h1>
+        <div className="CARDS flex flex-col mt-4 gap-2">
+          <div className="shadow-md h-28 border bg-secondary-100/40 border-secondary-800/10 rounded-2xl animate-pulse" />
+          <div className="shadow-md h-28 border bg-secondary-100/60 border-secondary-800/10 rounded-2xl animate-pulse" />
+          <div className="shadow-md h-28 border bg-secondary-100/20 border-secondary-800/10 rounded-2xl animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -82,6 +82,13 @@ const UpdateSundayServiceForm: React.FC<IUpdateSundayServiceForm> = ({
         value={description}
         setValue={setDescription}
       />
+      <BaseInput
+        id="location"
+        name="location"
+        label="Location"
+        value={location}
+        setValue={setLocation}
+      />
       <DateInput
         id="date"
         name="date"

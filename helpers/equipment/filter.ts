@@ -1,4 +1,5 @@
 'use client';
+
 export const EquipmentFilter = (
   data: any[],
   searchTerm: string,

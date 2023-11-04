@@ -2,6 +2,7 @@
 
 import { fetcher } from '@/helpers/fetcher';
 import { convertDate } from '@/helpers/sundayservice/date';
+import { SortEquipment } from '@/helpers/sundayservice/filter';
 import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
 import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
@@ -29,6 +30,7 @@ export default function SundayServicePage() {
   const role = useRole(session);
 
   const { data, isLoading } = useSWR('/api/sunday-service', fetcher);
+  const filteredData = SortEquipment(data);
 
   let [isOpen, setIsOpen] = useState(false);
 
@@ -81,7 +83,11 @@ export default function SundayServicePage() {
   }
   return (
     <>
-      <LazySearchModal data={data} closeModal={closeModal} isOpen={isOpen} />
+      <LazySearchModal
+        data={filteredData}
+        closeModal={closeModal}
+        isOpen={isOpen}
+      />
       <div className="w-full mt-0 mb-40">
         <div className="ACTIONS">
           <h1 className="text-3xl font-bold">Actions</h1>
@@ -117,7 +123,7 @@ export default function SundayServicePage() {
             <div className="flex items-center align-middle"></div>
           </div>
           <div className="CARDS flex flex-col mt-4 gap-2">
-            {data.map((item: any) => {
+            {filteredData.map((item: any) => {
               return (
                 <Link
                   key={item._id}

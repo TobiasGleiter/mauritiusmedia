@@ -4,11 +4,14 @@ import {
   BiBible,
   BiCaretDown,
   BiCaretRight,
-  BiCheckCircle,
+  BiCheck,
+  BiCheckDouble,
   BiCheckbox,
   BiChevronRight,
   BiChurch,
   BiDotsHorizontalRounded,
+  BiEditAlt,
+  BiError,
   BiGridHorizontal,
   BiGroup,
   BiListPlus,
@@ -43,7 +46,10 @@ const ICONS_MAP: any = {
 
   chevronright: <BiChevronRight />,
 
-  check: <BiCheckCircle />,
+  check: <BiCheck />,
+  checkdouble: <BiCheckDouble />,
+  edited: <BiEditAlt />,
+  error: <BiError />,
 
   logo: <BiChurch />,
   dashboard: <BiTachometer />,

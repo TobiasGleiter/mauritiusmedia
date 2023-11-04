@@ -1,12 +1,10 @@
-type Workflow = {
+export type Workflow = {
   name: string;
   team: string;
 };
 
-type SundayService = {
-  _id: {
-    $oid: string;
-  };
+export type SundayService = {
+  _id: string;
   name: string;
   description: string;
   location: string;

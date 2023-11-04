@@ -1,17 +1,16 @@
 'use client';
 
 import ActionsSundayService from '@/components/feature/sundayservice/actions/ActionsSundayService';
+import SundayServiceList from '@/components/list/sundayservice/SundayServiceList';
 import { fetcher } from '@/helpers/fetcher';
-import { convertDate } from '@/helpers/sundayservice/date';
 import { SortEquipment } from '@/helpers/sundayservice/filter';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
 
 /***
- *  This component is responsible for displaying a list of (sorted) Sunday services
- *  - Besides that, it is also responsible for finding a sunday service
+ *  This Page is responsible for displaying a list of (sorted) Sunday services
+ *  - Besides that, it is also responsible for finding a sunday service (search modal)
  */
 
 export default function SundayServicePage() {
@@ -28,47 +27,24 @@ export default function SundayServicePage() {
     setIsOpen(true);
   }
 
-  if (isLoading) {
-    return <LoadingSkeleton />;
-  }
+  if (isLoading) return <LoadingSkeleton />;
+
   return (
-    <>
+    <div className="w-full mt-0 mb-40">
       <LazySearchModal
         data={filteredData}
         closeModal={closeModal}
         isOpen={isOpen}
       />
-      <div className="w-full mt-0 mb-40">
-        <ActionsSundayService openModal={openModal} />
-        <div className="SUNDAY-SERVICE mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
-          <h1 className="text-3xl font-bold">Sunday Service</h1>
-          <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
-            <div className="flex items-center align-middle"></div>
-          </div>
-          <div className="CARDS flex flex-col mt-4 gap-2">
-            {filteredData.map((item: any) => {
-              return (
-                <Link
-                  key={item._id}
-                  href={`/sunday-service/details/${item._id}`}
-                  className="flex flex-col shadow-md border border-secondary-800/10 rounded-2xl px-4 pt-3"
-                >
-                  <h2 className="text-xl antialiased font-medium">
-                    {item.name}
-                  </h2>
-                  <p className="text-lg text-secondary-600 antialiased font-medium">
-                    {convertDate(item.date)}
-                  </p>
-                  <div className="flex text-lg text-secondary-600 text-center align-middle">
-                    <p className="antialiased font-medium">{item.location}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+      <ActionsSundayService openModal={openModal} />
+      <div className="SUNDAY-SERVICE mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen">
+        <h1 className="text-3xl font-bold">Sunday Service</h1>
+        <div className="FILTER-BAR flex lg:flex-row sm:flex-row flex-col gap-4 mt-2">
+          <div className="flex items-center align-middle"></div>
         </div>
+        <SundayServiceList data={filteredData} />
       </div>
-    </>
+    </div>
   );
 }
 

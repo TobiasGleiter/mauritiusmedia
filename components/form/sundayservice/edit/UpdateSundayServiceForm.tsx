@@ -1,11 +1,13 @@
 'use client';
+import StatusBar from '@/components/bar/status/StatusBar';
 import BaseDivider from '@/components/base/divider/BaseDivider';
 import SubmitButton from '@/components/button/submit/SubmitButton';
 import WorkflowSundayService from '@/components/feature/sundayservice/workflow/WorkflowSundayService';
 import BaseInput from '@/components/input/base/BaseInput';
 import DateInput from '@/components/input/date/DateInput';
+import { onSubmitStatusCodes } from '@/helpers/enums';
 import { updateSundayService } from '@/helpers/sundayservice/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface WorkflowStep {
   name: string;
@@ -19,55 +21,72 @@ export interface IUpdateSundayServiceForm {
 const UpdateSundayServiceForm: React.FC<IUpdateSundayServiceForm> = ({
   data,
 }) => {
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [date, setDate] = useState<string>('');
-  const [location, setLocation] = useState<string>('');
-  const [workflow, setWorkflow] = useState<WorkflowStep[]>([]);
+  // UI interactivity
+  const [status, setStatus] = useState({
+    code: onSubmitStatusCodes.NOTHINGCHANGED,
+  });
 
-  const [isUpdateing, setIsUpdateing] = useState<boolean>(false);
-  const [isError, setIsError] = useState({ status: false, message: '' });
+  // Values to create a sunday service
+  const [name, setName] = useState<string>(data.name);
+  const [description, setDescription] = useState<string>(data.description);
+  const [date, setDate] = useState<string>(data.date);
+  const [location, setLocation] = useState<string>(data.location);
+  const [workflow, setWorkflow] = useState<WorkflowStep[]>(data.workflow);
 
-  // Use useEffect to update the description when equipment data changes
+  // Reference to store the initial values
+  const initialValues = useRef({ name, description, date, location, workflow });
+
+  // keep track of the initial values and if changed status code
   useEffect(() => {
-    if (data) {
-      setName(data.name);
-      setDescription(data.description);
-      setDate(data.date);
-      setLocation(data.location);
-      setWorkflow(data.workflow);
-    }
-  }, [data]);
+    const isChanged =
+      initialValues.current.name !== name ||
+      initialValues.current.description !== description ||
+      initialValues.current.date !== date ||
+      initialValues.current.location !== location ||
+      JSON.stringify(initialValues.current.workflow) !==
+        JSON.stringify(workflow);
 
-  const handleSubmit = async (e: any) => {
+    if (isChanged) {
+      setStatus({ code: onSubmitStatusCodes.EDITED });
+    }
+  }, [name, description, date, location, workflow]);
+
+  const handleSubmitAndUpdateSundayService = async (e: any) => {
     e.preventDefault();
 
-    setIsUpdateing(true);
-    setIsError({ status: false, message: '' });
+    if (status.code === onSubmitStatusCodes.EDITED) {
+      setStatus({ code: onSubmitStatusCodes.UPDATING });
 
-    const body = JSON.stringify({
-      name,
-      description,
-      location,
-      date,
-      workflow,
-    });
-    const res = await updateSundayService(data._id, body);
-
-    if (!res.ok) {
-      setIsError({
-        status: true,
-        message: 'Error while updating this Sunday Service. Please try later.',
+      const body = JSON.stringify({
+        name,
+        description,
+        location,
+        date,
+        workflow,
       });
+      const res = await updateSundayService(data._id, body);
+
+      if (!res.ok) {
+        setStatus({ code: onSubmitStatusCodes.ERROR });
+      }
+
+      setTimeout(() => {
+        setStatus({ code: onSubmitStatusCodes.UPDATED });
+      }, 200);
+    } else {
+      setStatus({ code: onSubmitStatusCodes.UPDATING });
+      setTimeout(() => {
+        setStatus({ code: onSubmitStatusCodes.UPDATED });
+      }, 200);
     }
-    setIsUpdateing(false);
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitAndUpdateSundayService}
       className={`flex flex-col gap-2 w-full mt-6 rounded-lg`}
     >
+      <StatusBar status={status} />
       <BaseInput
         id="name"
         name="name"
@@ -96,16 +115,9 @@ const UpdateSundayServiceForm: React.FC<IUpdateSundayServiceForm> = ({
         value={date}
         setValue={setDate}
       />
-      <div className="mt-6">
-        <WorkflowSundayService workflow={workflow} setWorkflow={setWorkflow} />
-      </div>
+      <WorkflowSundayService workflow={workflow} setWorkflow={setWorkflow} />
       <BaseDivider />
       <SubmitButton label="Update" primary />
-      <div>
-        {isError.status && (
-          <p className="text-danger-500 font-semibold">{isError.message}</p>
-        )}
-      </div>
     </form>
   );
 };

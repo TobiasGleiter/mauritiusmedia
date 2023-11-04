@@ -23,20 +23,24 @@ interface WorkflowStep {
 export interface ICreateSundayServiceForm {}
 
 const CreateSundayServiceForm: React.FC<ICreateSundayServiceForm> = () => {
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [date, setDate] = useState<string>(
-    formatDateAndRetrunYearMonthDayHoursMinutes(new Date())
-  );
-  const [location, setLocation] = useState<string>('');
-  const [workflow, setWorkflow] = useState<WorkflowStep[]>([]);
+  // Constants
+  const today = formatDateAndRetrunYearMonthDayHoursMinutes(new Date());
 
+  // Navigation
   const router = useRouter();
 
+  // UI interactivity
   const [isUpdateing, setIsUpdateing] = useState(false);
   const [isError, setIsError] = useState({ status: false, message: '' });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Values to create a sunday service
+  const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [date, setDate] = useState<string>(today);
+  const [location, setLocation] = useState<string>('');
+  const [workflow, setWorkflow] = useState<WorkflowStep[]>([]);
+
+  const handleSubmitAndCreateNewSundayService = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setIsUpdateing(true);
@@ -64,7 +68,10 @@ const CreateSundayServiceForm: React.FC<ICreateSundayServiceForm> = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full mt-6">
+    <form
+      onSubmit={handleSubmitAndCreateNewSundayService}
+      className="flex flex-col gap-2 w-full mt-6"
+    >
       <BaseInput
         id="name"
         name="name"

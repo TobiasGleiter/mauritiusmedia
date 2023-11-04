@@ -1,6 +1,11 @@
 import CreateSundayServiceForm from '@/components/form/sundayservice/create/CreateSundayServiceForm';
 import PageNavigation from '@/components/navigation/page/PageNavigation';
 
+/**
+ * This Page is responsible for creating a sunday service
+ *
+ */
+
 export default function CreateSundayService() {
   return (
     <div className="w-full mb-40">

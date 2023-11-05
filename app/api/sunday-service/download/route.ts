@@ -20,6 +20,9 @@ export async function POST(request: NextRequest) {
 
   const { data } = await request.json();
 
+  const filename =
+    data.name.replace(/[^\w\s]/gi, '').replace(/ /g, '_') + '.pdf';
+
   // Generate Workflow HTML
   const workflowHtml = data.workflow
     .map(
@@ -65,12 +68,9 @@ export async function POST(request: NextRequest) {
   // ...
 
   await page.setContent(content);
-  const pdf = await page.pdf({ format: 'A4' });
+  const pdf = await page.pdf({ path: `temp/${filename}`, format: 'A4' });
 
   await browser.close();
-
-  const filename =
-    data.name.replace(/[^\w\s]/gi, '').replace(/ /g, '_') + '.pdf';
 
   return new NextResponse(pdf, {
     headers: {

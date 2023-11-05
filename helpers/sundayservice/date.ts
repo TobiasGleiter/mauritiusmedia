@@ -1,11 +1,14 @@
-export const convertDate = (tempDate: string) => {
+export const formatDateAndDisplayDayMonthYearHourMinute = (
+  tempDate: string
+) => {
   const date = new Date(tempDate);
   const year = date.getFullYear();
-  const month = date.toLocaleString('en-US', { month: 'long' });
-  const day = String(date.getDate()).padStart(2, '0');
-  const hour = String(date.getHours()).padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
 
-  return `${day}. ${month} ${year}, ${hour} Uhr`;
+  return `${day}. ${month} ${year}, ${hours}:${minutes} Uhr`;
 };
 
 export function formatDateAndRetrunYearMonthDayHoursMinutes(date: Date) {

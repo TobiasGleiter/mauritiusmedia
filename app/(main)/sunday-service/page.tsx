@@ -3,7 +3,7 @@
 import ActionsSundayService from '@/components/feature/sundayservice/actions/ActionsSundayService';
 import SundayServiceList from '@/components/list/sundayservice/SundayServiceList';
 import { fetcher } from '@/helpers/fetcher';
-import { SortEquipment } from '@/helpers/sundayservice/filter';
+import { SortSundayService } from '@/helpers/sundayservice/filter';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import useSWR from 'swr';
@@ -15,7 +15,7 @@ import useSWR from 'swr';
 
 export default function SundayServicePage() {
   const { data, isLoading } = useSWR('/api/sunday-service', fetcher);
-  const filteredData = SortEquipment(data);
+  const filteredData = SortSundayService(data);
 
   let [isOpen, setIsOpen] = useState(false);
 

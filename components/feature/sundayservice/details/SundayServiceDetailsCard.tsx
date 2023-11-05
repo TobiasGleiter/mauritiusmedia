@@ -4,7 +4,7 @@ import BaseDivider from '@/components/base/divider/BaseDivider';
 import ButtonListbox from '@/components/listbox/button/ButtonListbox';
 import BaseModal from '@/components/modal/base/BaseModal';
 import { deleteSundayService } from '@/helpers/sundayservice/api';
-import { convertDate } from '@/helpers/sundayservice/date';
+import { formatDateAndDisplayDayMonthYearHourMinute } from '@/helpers/sundayservice/date';
 import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -103,7 +103,7 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
             <p className=" antialiased text-base text-secondary-600">Name</p>
             <p>{data.name}</p>
             <p className=" antialiased text-base text-secondary-800 -translate-y-1">
-              on the {convertDate(data.date)}
+              on the {formatDateAndDisplayDayMonthYearHourMinute(data.date)}
             </p>
           </div>
           {/** LOCATION */}

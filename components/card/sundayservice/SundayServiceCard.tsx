@@ -1,4 +1,4 @@
-import { convertDate } from '@/helpers/sundayservice/date';
+import { formatDateAndDisplayDayMonthYearHourMinute } from '@/helpers/sundayservice/date';
 import { SundayService } from '@/types/sundayservice/base';
 import Link from 'next/link';
 
@@ -14,7 +14,7 @@ const SundayServiceCard: React.FC<ISundayServiceCard> = ({ item }) => {
     >
       <h2 className="text-xl antialiased font-medium">{item.name}</h2>
       <p className="text-lg text-secondary-600 antialiased font-medium">
-        {convertDate(item.date)}
+        {formatDateAndDisplayDayMonthYearHourMinute(item.date)}
       </p>
       <div className="flex text-lg text-secondary-600 text-center align-middle">
         <p className="antialiased font-medium">{item.location}</p>

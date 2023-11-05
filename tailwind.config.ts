@@ -44,6 +44,9 @@ const config: Config = {
           100: '#FFE8B6',
           500: '#FDB20E',
         },
+        success: {
+          500: '#4BB543',
+        },
       },
     },
   },

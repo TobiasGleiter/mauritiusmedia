@@ -4,7 +4,7 @@ export default async function UsersPage() {
   const users = await getUsers();
 
   return (
-    <div className="EQUIPMENT mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen w-full">
+    <div className="USERS mt-4 py-4 px-4 rounded-2xl shadow-md bg-white min-h-screen w-full">
       <h1 className="text-3xl font-bold">Users</h1>
       <div className="CARDS flex flex-col mt-4 gap-2">
         {users.map((item: any) => {

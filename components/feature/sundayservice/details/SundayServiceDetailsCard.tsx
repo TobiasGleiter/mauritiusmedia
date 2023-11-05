@@ -54,19 +54,25 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
     {
       action: () => router.push(`/sunday-service/edit/${data._id}`),
       label: 'Edit',
-      icon: 'placeholder',
+      icon: 'edit',
       active: 'bg-primary-500',
     },
     {
       action: () => window.open(`/share/sunday-service/${data._id}`, '_blank'),
       label: 'Share',
-      icon: 'placeholder',
+      icon: 'share',
+      active: 'bg-primary-500',
+    },
+    {
+      action: () => alert('Print'),
+      label: 'Print',
+      icon: 'print',
       active: 'bg-primary-500',
     },
     {
       action: () => openModal(),
       label: 'Delete',
-      icon: 'placeholder',
+      icon: 'delete',
       active: 'bg-danger-500',
     },
   ];

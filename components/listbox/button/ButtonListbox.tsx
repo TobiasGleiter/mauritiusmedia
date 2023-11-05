@@ -34,8 +34,9 @@ const ButtonListbox: React.FC<IButtonListbox> = ({ title, items, align }) => {
                   onClick={() => item.action()}
                   className={`${
                     active ? `${item.active} text-zinc-800` : ''
-                  } group flex w-full items-center rounded-lg px-2 py-2 text-base`}
+                  } group flex w-full items-center rounded-lg px-2 py-2 text-base gap-2`}
                 >
+                  <BaseIcon icon={item.icon} style="w-5 h-5" />
                   <span>{item.label}</span>
                 </button>
               )}

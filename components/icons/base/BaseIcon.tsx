@@ -10,6 +10,7 @@ import {
   BiChevronRight,
   BiChurch,
   BiDotsHorizontalRounded,
+  BiEdit,
   BiEditAlt,
   BiError,
   BiGridHorizontal,
@@ -18,8 +19,11 @@ import {
   BiListUl,
   BiLogIn,
   BiLogOut,
+  BiPrinter,
   BiSearch,
+  BiShare,
   BiTachometer,
+  BiTrash,
   BiUser,
 } from 'react-icons/bi';
 import { ImArrowDown2, ImArrowUpRight2, ImSpinner9 } from 'react-icons/im';
@@ -45,6 +49,11 @@ const ICONS_MAP: any = {
   search: <BiSearch />,
 
   chevronright: <BiChevronRight />,
+
+  delete: <BiTrash />,
+  edit: <BiEdit />,
+  print: <BiPrinter />,
+  share: <BiShare />,
 
   check: <BiCheck />,
   checkdouble: <BiCheckDouble />,

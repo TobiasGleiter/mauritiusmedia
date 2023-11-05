@@ -9,6 +9,7 @@ import {
   BiCheckbox,
   BiChevronRight,
   BiChurch,
+  BiCloudDownload,
   BiDotsHorizontalRounded,
   BiEdit,
   BiEditAlt,
@@ -53,6 +54,7 @@ const ICONS_MAP: any = {
   delete: <BiTrash />,
   edit: <BiEdit />,
   print: <BiPrinter />,
+  download: <BiCloudDownload />,
   share: <BiShare />,
 
   check: <BiCheck />,

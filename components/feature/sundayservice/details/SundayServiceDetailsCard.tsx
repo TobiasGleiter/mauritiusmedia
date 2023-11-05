@@ -50,6 +50,19 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
     router.push('/sunday-service');
   };
 
+  const downloadPDF = async () => {
+    const res = await fetch('/api/sunday-service/download');
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'download.pdf';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const items = [
     {
       action: () => router.push(`/sunday-service/edit/${data._id}`),
@@ -64,8 +77,8 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
       active: 'bg-primary-500',
     },
     {
-      action: () => alert('Print'),
-      label: 'Print',
+      action: () => downloadPDF(),
+      label: 'Download',
       icon: 'print',
       active: 'bg-primary-500',
     },

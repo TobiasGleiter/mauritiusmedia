@@ -6,6 +6,7 @@ import BaseModal from '@/components/modal/base/BaseModal';
 import { deleteSundayService } from '@/helpers/sundayservice/api';
 import { formatDateAndDisplayDayMonthYearHourMinute } from '@/helpers/sundayservice/date';
 import { hasRequiredPermissionsClient, useRole } from '@/lib/rbac/base';
+import { SundayService } from '@/types/sundayservice/base';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -50,6 +51,28 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
     router.push('/sunday-service');
   };
 
+  // download pdf
+  const downloadPDF = async (sundayservice: SundayService) => {
+    const res = await fetch('/api/sunday-service/download', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: sundayservice }),
+    });
+
+    const filename =
+      data.name.replace(/[^\w\s]/gi, '').replace(/ /g, '_') + '.pdf';
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const items = [
     {
       action: () => router.push(`/sunday-service/edit/${data._id}`),
@@ -64,9 +87,9 @@ const SundayServiceDetailsCard: React.FC<ISundayServiceDetailsCard> = ({
       active: 'bg-primary-500',
     },
     {
-      action: () => alert('Print'),
-      label: 'Print',
-      icon: 'print',
+      action: () => downloadPDF(data),
+      label: 'Download',
+      icon: 'download',
       active: 'bg-primary-500',
     },
     {

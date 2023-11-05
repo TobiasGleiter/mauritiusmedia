@@ -1,3 +1,5 @@
+import { SundayService } from '@/types/sundayservice/base';
+
 export const SortEquipment = (data: SundayService[]) => {
   if (!data) {
     return [];

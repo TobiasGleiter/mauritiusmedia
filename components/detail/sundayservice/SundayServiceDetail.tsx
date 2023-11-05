@@ -1,4 +1,4 @@
-import { convertDate } from '@/helpers/sundayservice/date';
+import { formatDateAndDisplayDayMonthYearHourMinute } from '@/helpers/sundayservice/date';
 
 export interface ISundayServiceDetail {
   promise: Promise<any>;
@@ -14,7 +14,7 @@ const SundayServiceDetail = async ({ promise }: ISundayServiceDetail) => {
           <p className=" antialiased text-base text-secondary-600">Name</p>
           <p>{data.name}</p>
           <p className=" antialiased text-base text-secondary-800 -translate-y-1">
-            on the {convertDate(data.date)}
+            on the {formatDateAndDisplayDayMonthYearHourMinute(data.date)}
           </p>
         </div>
         {data.location && (
